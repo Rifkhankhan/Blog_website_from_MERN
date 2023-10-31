@@ -1,0 +1,93 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+.container{
+    min-height: 100vh;
+    background-color: rgb(14, 75, 95);
+}
+.homeImage{
+    width: 100%;
+    margin: auto;
+    height: 60vh;
+    background-image: url('../../images/conflict.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.blogs_colomns{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    width: 90%;
+    margin-inline: auto;
+    margin-top: 1rem;
+    column-gap: 0.5rem;
+
+}
+.blogs{
+    min-height: 50vh;
+   
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 10px;
+}
+
+
+
+.blog{
+    background-color: rgb(28, 6, 75);
+
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 60vh;
+}
+
+.blog .image{
+    width: 100%;
+    height: 60%;
+}
+
+.blog .title{
+    text-align: left;
+    margin-inline: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   line-clamp: 2;
+   -webkit-box-orient: vertical; 
+   overflow: hidden;
+
+}
+
+.blog p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   line-clamp: 2;
+   -webkit-box-orient: vertical; 
+   text-align: left;
+   margin-inline: 1rem;
+}
+
+.blog .details{
+   display: flex;
+   justify-content: left;
+   align-items: center;
+    margin-top: 0.5rem;
+    color: black;
+}
+
+.blog .details p{
+    padding-inline: 15px;
+    padding-block: 1px;
+    background-color: white;
+    border-radius: 10px;
+ }
