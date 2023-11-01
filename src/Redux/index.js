@@ -1,15 +1,14 @@
 import {  configureStore }  from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
 import authSlice from './authSlice'
-import ProductSlice from './ProductSlice'
+
+import BlogSlice from './BlogSlice'
 
 
 const store = configureStore({
     reducer: {
-        product:ProductSlice,
         auth:authSlice,
-  
-        blog:ProductSlice,
+        blog:BlogSlice,
     },
     middleware: [thunk],
     // middleware: [thunk, logger],

@@ -4,59 +4,55 @@ import cr7 from './../../images/cr7.jpg'
 import animal from './../../images/whiteTiger.jpg'
 import leo from './../../images/leo.jpg'
 import RightSidebar from '../../Components/RightSidebar/RightSidebar'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBlogs } from '../../Actions/BlogAction'
+import { useNavigate } from 'react-router-dom'
+// import AddPostModel from '../../Components/AddPostModel/AddPostModel'
+import moment from 'moment';
 
 const Home = () => {
+	const blogs = useSelector(state => state.blog.blogs)
+	const navigate = useNavigate()
+	const [modalOpen, setModalOpen] = useState(false)
+	const dispatch = useDispatch()
+	const clickHandler = (id) => {
+		navigate(`/blogs/${id}`)
+	}
+	// const date = moment(blog[0]?.createdAt).format('MM-DD-YYYY');
+	
+console.log(blogs);
+	useEffect(() => {
+		dispatch(getBlogs())
+	},[])
 	return (
 		<div className={styles.container}>
 			<section className={styles.homeImage}></section>
 			<section className={styles.blogs_colomns}>
 				<div className={styles.blogs}>
-					<div className={styles.blog}>
-						<img src={cr7} alt="" className={styles.image} />
+					{blogs.map(blog => 
+					
+						<div className={styles.blog} onClick={() => clickHandler(blog._id)}>
+						<img src={blog.image} alt="" className={styles.image} />
 						<h1 className={styles.title}>
-							Cristiano Ronaldo is a Popular player
+							{blog.title} 
 						</h1>
 						<p>
-							lorem fwefwef wefwefwef fwefwefwef wefwefewf hefbweiufjwef
-							fewfhwebfwef wefbwefiwekjfnwefwefwe ewfwejfbwenfjkwe wefbwef
+							{blog.desc}
 						</p>
 						<div className={styles.details}>
 							<p className={styles.auther}>Rifkhan</p>
-							<p className={styles.date}>July 16 2023</p>
+							<p className={styles.date}>{moment(blog.createdAt).format('MM-DD-YYYY')}</p>
+							<p className={styles.date}>{blog.child}</p>
 						</div>
 					</div>
-					<div className={styles.blog}>
-						<img src={leo} alt="" className={styles.image} />
-						<h1 className={styles.title}>
-							Cristiano Ronaldo is a Popular player
-						</h1>
-						<p>
-							lorem fwefwef wefwefwef fwefwefwef wefwefewf hefbweiufjwef
-							fewfhwebfwef wefbwefiwekjfnwefwefwe ewfwejfbwenfjkwe wefbwef
-						</p>
-						<div className={styles.details}>
-							<p className={styles.auther}>Rifkhan</p>
-							<p className={styles.date}>July 16 2023</p>
-						</div>
-					</div>
-					<div className={styles.blog}>
-						<img src={animal} alt="" className={styles.image} />
-						<h1 className={styles.title}>
-							Cristiano Ronaldo is a Popular player
-						</h1>
-						<p>
-							lorem fwefwef wefwefwef fwefwefwef wefwefewf hefbweiufjwef
-							fewfhwebfwef wefbwefiwekjfnwefwefwe ewfwejfbwenfjkwe wefbwef
-						</p>
-						<div className={styles.details}>
-							<p className={styles.auther}>Rifkhan</p>
-							<p className={styles.date}>July 16 2023</p>
-						</div>
-					</div>
+					)}
+				
 				</div>
 
 				<RightSidebar />
 			</section>
+
+		
 		</div>
 	)
 }

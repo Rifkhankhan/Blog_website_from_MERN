@@ -1,0 +1,39 @@
+.subHeader{
+    display: block;
+    background-color: rgb(182, 210, 21);
+    width: 60%;
+    margin: auto;
+  
+    position: sticky !important;
+    height: auto;
+
+}
+
+.subHeader ul{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   height: 100%;
+   justify-content: center;
+}
+.subHeader ul li{
+   list-style: none;
+   height: 100%;
+   margin-block: 10px;
+   margin-left: 10px;
+   padding-right: 10px;
+  color: rgb(28, 6, 75);
+  transition: all 0.2s ease-in-out;
+   
+ }
+
+ .subHeader ul li:not(:last-child){
+  
+    border-right: 2px solid black;
+  }
+
+  .subHeader ul li h3:hover{
+  
+   color: white;
+   cursor: pointer;
+  }

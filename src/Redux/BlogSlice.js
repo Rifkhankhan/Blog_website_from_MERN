@@ -1,36 +1,36 @@
 import { createSlice }  from '@reduxjs/toolkit'
 
-
 const initialAuthState = {
-    ship:[],
-    receive:[],
-    wish:[],
-    returns:[],
-    cancel:[],
-    review:[],
-    shipped:[],
-    processing:[],
-    pending:[],
+    blogs:[],
     loading:false,
-    products:[],
-    product:[]
+    comments:[]
 }
-const productSlice = createSlice ({
-    name:'product',
+const blogSlice = createSlice ({
+    name:'blog',
     initialState:initialAuthState,
     reducers:{
        toggleLoadingSpinner(state,action) {
         state.loading = !state.loading
        },
-        addCard(state,action){
-            state.cardItems = action.payload
-            let userData = JSON.parse(localStorage.getItem('user'))
-            userData.result.card = state.cardItems
+        addBlog(state,action){
+            state.blogs.push(action.payload)
+
+            // let userData = JSON.parse(localStorage.getItem('user'))
+            // userData.result.card = state.cardItems
           
-            localStorage.setItem('user',JSON.stringify(userData))
+            // localStorage.setItem('user',JSON.stringify(userData))
+        }, pushComment(state,action){
+           
+            state.comments.push(action.payload)
+
+        }, getComments(state,action){
+            state.comments = action.payload
         },
         addWish(state,action){
             state.wish = action.payload
+        },
+        getBlogs(state,action){
+            state.blogs = action.payload
         },
         getCardLength(state){
             state.cardItems = JSON.parse(localStorage.getItem('user')).result.card.length
@@ -41,29 +41,6 @@ const productSlice = createSlice ({
             state.buyItems.push(action.payload)
         }, 
         
-        cancelOrderItem(state,action){},
-        orders(state,action){},
-        getPendingProductList(state,action) {
-            state.pending = action.payload
-        }, 
-        getProcessingList(state,action) {
-            state.processing = action.payload
-        },
-
-        getShipList(state,action) {
-            state.ship = action.payload
-        },
-
-        getCancelList(state,action) {
-            state.cancel = action.payload
-        },
-        getReturnsList(state,action) {
-            state.returns = action.payload
-        },
-        getAllShippedList(state,action) {
-            state.shipped = action.payload
-        },
-
         removeItemFromPending(state,action){
             state.pending = state.pending.filter(pen => pen.id !== action.payload)
         },
@@ -83,5 +60,5 @@ const productSlice = createSlice ({
     }
 })
 
-export const productAction = productSlice.actions
-export default productSlice.reducer
+export const blogAction = blogSlice.actions
+export default blogSlice.reducer

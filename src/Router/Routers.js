@@ -1,7 +1,12 @@
 import { useDispatch } from 'react-redux'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from '../Pages/Home/Home'
-
+import Sports from '../Pages/Sports/Sports'
+import BlogDetails from '../Pages/BlogDetails/BlogDetails'
+import Profile from '../Pages/Profile/Profile'
+import Blogs from '../Components/Blog/Blog'
+import CreateBlog from '../Components/CreateFruitComponent/CreateFruitComponent'
+import Dashboard from '../Components/Dashboard/Dashboard'
 // import Home from '../Pages/Home/Home'
 
 
@@ -22,13 +27,23 @@ const Routers = () => {
 	// useEffect(() => {
 	// 	dispatch(netflixAuthActions.autoLogin())
 	// }, [dispatch])
-
+// 	<Route path="/topics" element={<Topics />}>
+	// 	<Route path=":topicId" element={<Topic />}>
+	// 	  <Route path=":resourceId" element={<Resource />} />
+	// 	</Route>
+//   </Route>
 	//   console.log(isAuthenticated);
 	return (
 		<Routes>
 		 <Route path="/" element={<Home />} />
-
-
+		 <Route path="/sports" element={<Sports />} />
+		 <Route path="/blogs/:id" element={<BlogDetails />} />
+		 <Route path="/profile" element={<Profile />} >
+		 	 <Route index element={<Dashboard /> } />
+		 	 <Route path='blogs' element={<Blogs /> } />
+			 <Route path='create-blog' element={<CreateBlog /> } />
+		 </Route>
+		 <Route path="*" element={<Home />} />
 
 		 	{/* {isAuthenticated && (
 		// 		<Route path="/netflix/profile" element={<NetflixProfile />}>

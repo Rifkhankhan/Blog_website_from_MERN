@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import  './Header.css'
-
+import profile from './../../images/profile.png'
 function getWindowDimensions() {
 	const { innerWidth: width, innerHeight: height } = window
 	return {
@@ -68,6 +68,9 @@ const Header = props => {
       <Link to='/technology' className='menu'>Technology</Link>
       <Link to='/animals' className='menu'>Animals</Link>
       <Link to='/news' className='menu'>News</Link>
+      <Link to='/profile' className='menu profile-btn'>
+		<img src={profile} alt="profile" />
+	  </Link>
     </div>
     <div></div>
   </section>

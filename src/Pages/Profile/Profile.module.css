@@ -1,0 +1,28 @@
+.profile_container{
+    display: grid;
+    grid-template-columns: 15% auto;
+}
+.leftSideBar{
+    min-height: 90vh;
+    background-color: rgb(230, 233, 54);
+}
+
+.leftSideBar ul{
+   display: grid;
+   grid-template-columns: repeat(1,minmax(0,1fr));
+   width: 100%;
+}
+.leftSideBar ul{
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(1,minmax(0,1fr));
+ }
+
+ .leftSideBar ul li{
+   list-style: none;
+   font-size: 20px;
+   font-weight: 500;
+   color: darkblue;
+   text-align: left;
+   padding-inline: 0.5rem;
+ }
