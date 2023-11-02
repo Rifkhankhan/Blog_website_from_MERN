@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://blog-bckend.onrender.com/' });
+const API = axios.create({ baseURL: 'http://localhost:5000/' });
 
 // export const getProductsByType = (type) => API.get(`/product/products/${type}`);
 export const getBlogs = () => API.get('/');

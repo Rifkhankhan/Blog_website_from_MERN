@@ -14,6 +14,7 @@ const blogSlice = createSlice ({
        },
         addBlog(state,action){
             state.blogs.push(action.payload)
+           window.location.reload()
 
             // let userData = JSON.parse(localStorage.getItem('user'))
             // userData.result.card = state.cardItems

@@ -9,6 +9,10 @@ import CreateBlog from '../Components/CreateFruitComponent/CreateFruitComponent'
 import Dashboard from '../Components/Dashboard/Dashboard'
 // import Home from '../Pages/Home/Home'
 
+import Login from '../Pages/Login/Login'
+import Technology from '../Pages/Technology/Technology'
+import Animals from '../Pages/Animals/Animals'
+import News from '../Pages/News/News'
 
 const Routers = () => {
 	const dispatch = useDispatch()
@@ -36,7 +40,11 @@ const Routers = () => {
 	return (
 		<Routes>
 		 <Route path="/" element={<Home />} />
+		 <Route path="/login" element={<Login />} />
 		 <Route path="/sports" element={<Sports />} />
+		 <Route path="/technology" element={<Technology />} />
+		 <Route path="/animals" element={<Animals />} />
+		 <Route path="/news" element={<News />} />
 		 <Route path="/blogs/:id" element={<BlogDetails />} />
 		 <Route path="/profile" element={<Profile />} >
 		 	 <Route index element={<Dashboard /> } />

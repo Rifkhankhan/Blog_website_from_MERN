@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './SubHeader.module.css'
 
-function SubHeader(props) {
+function SubHeader({headings,headHandler}) {
   const clickHandler = (head) => {
-    props.headHandler(head)
+    headHandler(head)
   }
-	const headings = ['Cricket', 'Football', 'Chess', 'VollyBall', 'Carrom']
+	
 
   return (
     <div className={styles.subHeader}>

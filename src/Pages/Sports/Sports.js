@@ -14,7 +14,6 @@ function Sports() {
 	const dispatch = useDispatch()
 	const [game,setGame] = useState('')
 	const navigate = useNavigate()
-
 	const headHandler = (head) => {
 		setGame(head)
 	}
@@ -27,7 +26,7 @@ function Sports() {
 	}
 	return (
 		<div className={styles.sportsContainer}>
-			<SubHeader headHandler={headHandler} />
+			<SubHeader headings={headings} headHandler={headHandler} />
 			<section className={styles.blogs_colomn}>
 				<div className={styles.blogs}>
 					{game === '' ? blogs?.filter(blog => blog.parent.toLowerCase() === 'sports').map(blog => <div className={styles.blog} onClick={() => clickHandler(blog._id)}>
