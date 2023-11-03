@@ -1,6 +1,6 @@
 .header-nav{
     display: block;
-    height: auto;
+    /* height: auto; */
     background-color: rgb(28, 6, 75);
     color: white;
     font-weight: bolder;
@@ -28,6 +28,7 @@
     justify-content: right;
     color: white !important;
     align-items: center;
+    position: relative;
 }
 .header-menus .menu{
     color: white !important;
@@ -55,6 +56,88 @@
 }
 
 
+/* responsive header */
+.header-menus .icon {
+    display: none;
+    font-size: 25px;
+    color: white;
+}
+.responsived-card .arrow{
+  width: 20px;
+  top: -20px;
+  right: 10px;
+  position: absolute;
+}
+.responsived-card{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 150px;
+  top: 55px;
+  right: -10px;
+  height: 100px;
+  position: absolute;
+  height: auto;
+  background-color: rgb(28, 6, 75);
+  display: none ;
+  border-radius: 5px;
+}
+
+.responsived-card a{
+  padding: 10px;
+  text-align: left;
+  text-decoration: none !important;
+}
+.responsived-card a:first-child{
+  margin-top: 5px;
+  
+}
 
 
+.responsived-card a:hover:not(:last-child){
+  color: white;
+  background-color:rgba(173, 216, 230, 0.564) !important;
+  
+}
 
+.responsived-card a img{
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  
+}
+@media screen and (max-width: 630px) {
+  .header-menus a:not(.responsived-card a) {
+    display: none;
+  }
+    .header-menus a.icon {
+      float: right;
+      display: block !important;
+    }
+    .header-logo{
+      margin-left: 20px;
+    }
+   
+  }
+
+  @media screen and (max-width: 630px) {
+    .header-menus {position: relative;}
+    .header-menus .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .responsived-card.show {
+      display: flex !important;
+
+    }
+   
+  
+  }
+
+  @media screen and (max-width: 750px) {
+    .header-logo{
+      margin-left: 20px;
+    }
+  
+  }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import  './Header.css'
 import profile from './../../images/profile.png'
+import arrow from '../../images/arrow-up (2).png'
 function getWindowDimensions() {
 	const { innerWidth: width, innerHeight: height } = window
 	return {
@@ -60,19 +61,42 @@ const Header = props => {
 		// navigate('/profile')
 	}
 
+	// responsive header setting
+	const  myFunction = () => {
+		var x = document.getElementById("responsived-card");
+		console.log(x);
+		if (x.className === "responsived-card") {
+		  x.className += " show";
+		} else {
+		  x.className = "responsived-card";
+		}
+	  }
+
 	return <section className={height <= 300 ? 'header-nav' : 'header-nav header-nav-change'}>
-    <div className='header-logo'>MyBlogs</div>
-    <div className='header-menus'>
-      <Link to='/' className='menu'>Home</Link>
-      <Link to='/sports' className='menu'>Sports</Link>
-      <Link to='/technology' className='menu'>Technology</Link>
-      <Link to='/animals' className='menu'>Animals</Link>
-      <Link to='/news' className='menu'>News</Link>
-      <Link to='/profile' className='menu profile-btn'>
-		<img src={profile} alt="profile" />
-	  </Link>
-    </div>
-    <div></div>
+    	<div className='header-logo'>MyBlogs</div>
+		<div className='header-menus'>
+			<Link to='/' className='menu'>Home</Link>
+			<Link to='/sports' className='menu'>Sports</Link>
+			<Link to='/technology' className='menu'>Technology</Link>
+			<Link to='/animals' className='menu'>Animals</Link>
+			<Link to='/news' className='menu'>News</Link>
+			<Link to='/profile' className='menu profile-btn'>
+				<img src={profile} alt="profile" />
+			</Link>
+			<a href="javascript:void(0);"  className="icon" onClick={myFunction}>&#9776;</a>
+			<div className='responsived-card' id="responsived-card">
+				<img className='arrow' src={arrow} alt=''/>
+				<Link to='/' className='menu'>Home</Link>
+				<Link to='/sports' className='menu'>Sports</Link>
+				<Link to='/technology' className='menu'>Technology</Link>
+				<Link to='/animals' className='menu'>Animals</Link>
+				<Link to='/news' className='menu'>News</Link>
+				<Link to='/profile' className='menu profile-btn'>
+					<img src={profile} alt="profile" />
+				</Link>
+			</div>
+		</div>
+    	<div></div>
   </section>
 }
 

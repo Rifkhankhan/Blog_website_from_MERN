@@ -11,7 +11,7 @@
     width: 100%;
     margin: auto;
     height: 60vh;
-    background-image: url('../../images/conflict.jpg');
+    background-image: url('../../images/blue-background.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -37,7 +37,7 @@
 
 .blog{
     background-color: rgb(28, 6, 75);
-    height: 65vh;
+    height: 60vh;
     color: white;
     border-radius: 5px;
     overflow: hidden;
@@ -83,8 +83,6 @@
 
 .blog .details{
    display: flex;
-   justify-content: left;
-   align-items: center;
     margin-top: 0.5rem;
     color: black;
 }
@@ -95,3 +93,310 @@
     background-color: white;
     border-radius: 10px;
  }
+
+@media screen and (max-width:900px) {
+    .blogs_colomns{
+        display: grid;
+        grid-template-columns: 100%;
+      
+    
+    }
+}
+ @media screen and (max-width: 1145px) {
+    .blogs_colomns{
+      
+        width: 95%;
+        margin-inline: auto;
+        column-gap: 0.5rem;
+    
+    }
+
+    .blogs{
+        /* min-height: 50vh; */
+       
+        display: grid;
+        grid-template-columns: repeat(1,minmax(0,1fr));
+        gap: 10px;
+    }
+
+    .blogs .blog{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 50% 50%;
+        height: 50vh;
+       
+    }
+
+
+    .blog .image{
+        width: 100%;
+        height: 100%;
+    }
+
+    
+.blog .title{
+    text-align: left;
+    margin-inline: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   line-clamp: 3;
+   -webkit-box-orient: vertical; 
+   overflow: hidden;
+
+}
+
+.blog p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 12;
+   line-clamp: 12;
+   -webkit-box-orient: vertical; 
+   text-align: left;
+   margin-inline: 1rem;
+}
+
+}
+
+
+@media screen and (max-width: 1044px) {
+    
+    .blogs .blog{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 40% 60%;
+        height: 50vh;
+       
+    }
+
+
+    .blog .image{
+        width: 100%;
+        height: 100%;
+    }
+
+    
+.blog .title{
+    text-align: left;
+    margin-inline: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   line-clamp: 3;
+   -webkit-box-orient: vertical; 
+   overflow: hidden;
+
+}
+
+.blog p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 13;
+   line-clamp: 13;
+   -webkit-box-orient: vertical; 
+   text-align: left;
+   margin-inline: 1rem;
+}
+.blog .details p{
+    padding-inline: 5px;
+    padding-block: 1px;
+    background-color: white;
+    border-radius: 10px;
+ }
+
+}
+@media screen and (max-width: 1024px) {
+    
+    .blogs .blog{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 40% 60%;
+        height: 50vh;
+       
+    }
+
+
+    .blog .image{
+        width: 100%;
+        height: 100%;
+    }
+
+    
+.blog .title{
+    text-align: left;
+    margin-inline: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   line-clamp: 3;
+   -webkit-box-orient: vertical; 
+   overflow: hidden;
+
+}
+
+.blog p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 10;
+   line-clamp: 10;
+   -webkit-box-orient: vertical; 
+   text-align: left;
+   margin-inline: 1rem;
+}
+.blog .details p{
+    padding-inline: 5px;
+    padding-block: 1px;
+    background-color: white;
+    border-radius: 10px;
+ }
+
+}
+
+@media screen and (max-width: 875px) {
+    
+    .blogs .blog{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 40% 60%;
+        height: 40vh;
+       
+    }
+
+
+    .blog .image{
+        width: 100%;
+        height: 100%;
+    }
+
+    
+.blog .title{
+    text-align: left;
+    margin-inline: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   line-clamp: 3;
+   -webkit-box-orient: vertical; 
+   overflow: hidden;
+
+}
+
+.blog p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 8;
+   line-clamp: 88;
+   -webkit-box-orient: vertical; 
+   text-align: left;
+   margin-inline: 1rem;
+}
+.blog .details p{
+    padding-inline: 5px;
+    padding-block: 1px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: smaller;
+ }
+}
+
+
+@media screen and (max-width: 680px) {
+    
+    .blogs .blog{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 40% 60%;
+        height: 30vh;
+        font-size: 10px;
+       
+    }
+
+
+    .blog .image{
+        width: 100%;
+        height: 100%;
+    }
+
+    
+.blog .title{
+    text-align: left;
+    margin-inline: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   line-clamp: 3;
+   -webkit-box-orient: vertical; 
+   overflow: hidden;
+
+}
+
+.blog p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 10;
+   line-clamp: 15;
+   -webkit-box-orient: vertical; 
+   text-align: left;
+   /* margin-inline: 1rem; */
+}
+.blog .details{
+   text-align: left;
+ }
+.blog .details p{
+    padding-inline: 5px;
+    padding-block: 1px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: smaller;
+ }
+}
+
+
+@media screen and (max-width: 376px) {
+   
+
+    .blog p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    line-clamp: 10;
+    -webkit-box-orient: vertical; 
+    text-align: left;
+    /* margin-inline: 1rem; */
+    }
+    .blog .details{
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    .blog .details p{
+        background-color: white;
+        border-radius: 10px;
+        font-size: smaller;
+        width: 25% !important;
+        margin-inline: 5px;
+        font-size: 6px;
+        text-align: center;
+        padding-inline: 1px !important;
+
+    }
+}

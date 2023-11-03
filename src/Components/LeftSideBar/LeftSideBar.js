@@ -49,9 +49,9 @@ const LeftSideBar = () => {
     <nav className="admin-sidebar" >
        
         <ul className="admin-sidebar-ul">
-            <li><Link to='/profile'>Dashboard</Link></li>
+            <li><Link to='/profile' className="parent-btn">Dashboard</Link></li>
             <li>
-                <Link to='/profile' className="shop-btn" onClick={handleClick}>Blogs</Link>
+                <Link to='/profile/blogs' className="parent-btn shop-btn" onClick={handleClick}>Blogs</Link>
                 <ul className="admin-sidebar-ul-ul shop-ul">
                     <li><Link  to='/profile/blogs' >Blogs</Link></li>
                     <li><Link to='/profile/create-blog'>Create Blog</Link></li>

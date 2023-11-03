@@ -27,20 +27,16 @@ nav .admin-sidebar-ul{
     width: 100%;
     list-style: none;
 }
-
+nav .parent-btn {
+  
+}
 nav .admin-sidebar-ul li{
-    line-height: 30px;
+    line-height: 40px;
     list-style: none;
     width: 100%;
     margin: auto;
 }
-nav .admin-sidebar-ul li:hover{
-   line-height: 30px;
-   list-style: none;
-   width: 100%;
-   margin: auto;
-   
-}
+
 nav .admin-sidebar-ul li a{
    color: white;
    display: block;
@@ -48,7 +44,7 @@ nav .admin-sidebar-ul li a{
    text-decoration: none;
    border-left: 3px solid transparent;
    border-right: 3px solid transparent;
-   font-size: 17px;
+   font-size: 18px;
    text-align: left;
    font-weight: 500;
    padding-left: 2rem;

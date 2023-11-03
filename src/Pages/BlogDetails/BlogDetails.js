@@ -5,7 +5,7 @@ import cr7 from './../../images/vk.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogs, pushComment } from '../../Actions/BlogAction'
-
+import datas from '../../Data/blogs'
 import moment from 'moment'
 // tinymce editi
 import { Editor } from '@tinymce/tinymce-react'
@@ -50,7 +50,7 @@ function BlogDetails() {
 	return (
 		<div className={styles.BlogDetails}>
 			<section className={styles.blogs_colomn}>
-				<div className={styles.blogs}>
+				{blogs.length > 0 ?<div className={styles.blogs}>
 					<img src={blog[0]?.image} alt="image" />
 					<p className={styles.date}>{date}</p>
 					<h2>{blog[0]?.title}</h2>
@@ -67,7 +67,26 @@ function BlogDetails() {
 							<button >Reply</button>
 						</section>
 					</form>
+				</div> :
+					<div className={styles.blogs}>
+					<img src={datas[0]?.image} alt="image" />
+					<p className={styles.date}>{date}</p>
+					<h2>{datas[0]?.title}</h2>
+					<p className={styles.desc}>{datas[0]?.desc}</p>
+					<form
+						onSubmit={formSubmitHandler}
+						>
+						<section className={styles.comments}>
+							<textarea
+								value={reply}
+								onChange={commentHandler}
+								placeholder="Reply for this blog"
+							/>
+							<button >Reply</button>
+						</section>
+					</form>
 				</div>
+				}
 				<RightSidebar color="rgb(14, 75, 95)" detail={true} blog={blog[0] ? blog[0] : []} />
 			</section>
 		</div>
