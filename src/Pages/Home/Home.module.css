@@ -3,6 +3,17 @@
     margin: 0%;
     box-sizing: border-box;
 }
+
+/** 
+  Breakpoints:
+  ------------
+  sm: min-width: 640px; //small device
+  md: min-width: 768px; // medium device
+  lg: min-width: 1024px; // large device
+  xl: min-width: 1280px; // extra large device
+  2xl: min-width: 1536px; // 2 x extra large device
+**/
+
 .container{
     min-height: 100vh;
     background-color: rgb(14, 75, 95);
@@ -97,7 +108,7 @@
 @media screen and (max-width:900px) {
     .blogs_colomns{
         display: grid;
-        grid-template-columns: 100%;
+        grid-template-columns: 100% 0%;
       
     
     }
@@ -297,7 +308,7 @@
     text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-line-clamp: 8;
-   line-clamp: 88;
+   line-clamp: 8;
    -webkit-box-orient: vertical; 
    text-align: left;
    margin-inline: 1rem;

@@ -3,11 +3,11 @@ import like from './../../images/positive-vote.png'
 import styles from './DashboardTable.module.css'
 import moment from 'moment'
 
-function DashboardTable({blogs}) {
+function DashboardTable({blogs,title}) {
   return (
     <div className={styles.container}>
   <table className={styles.table}>
-          <tr ><td>My Blogs</td></tr>
+          <tr ><td>{title}</td></tr>
 					<tr>
 						<th>#</th>
 						<th>Date</th>

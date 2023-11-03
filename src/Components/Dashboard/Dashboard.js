@@ -10,6 +10,8 @@ import blog from './../../images/blog.png'
 import DashboardTable from '../DashboardTable/DashboardTable'
 import Card from '../Card/Card'
 import { getBlogs } from '../../Actions/BlogAction'
+import datas from '../../Data/blogs'
+
 const Dashboard = () => {
 	const dispatch = useDispatch()
   const blogs = useSelector(state => state.blog.blogs)
@@ -27,8 +29,11 @@ const Dashboard = () => {
 				<Card img={comments} count={20} text="Comments i got"/>
 				<Card img={dislike} count={56} text="Dislikes i got"/>
 			</section>
-      <DashboardTable blogs={blogs}/>
-			{/* date title image desc likes comments dislikes */}
+      		{blogs.length > 0 ?  <DashboardTable  blogs={blogs} title="My Blogs"/> : <DashboardTable  blogs={datas} title="My Blogs"/>}
+      		{blogs.length > 0 ?  <DashboardTable  blogs={blogs} title="Blogs i liked"/> : <DashboardTable  blogs={datas} title="My Blogs"/>}
+      		{blogs.length > 0 ?  <DashboardTable  blogs={blogs} title="Blogs i commented"/> : <DashboardTable  blogs={datas} title="My Blogs"/>}
+
+	
 		</div>
 	)
 }

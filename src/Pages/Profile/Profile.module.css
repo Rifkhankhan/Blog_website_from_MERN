@@ -26,3 +26,10 @@
    text-align: left;
    padding-inline: 0.5rem;
  }
+
+ @media screen and (max-width:1050px) {
+    .profile_container{
+        display: grid;
+        grid-template-columns: 0% 100%;
+    }
+ }
