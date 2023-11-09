@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000/' });
+const API = axios.create({ baseURL: 'http://44.226.145.213:5000/' });
 
 // export const getProductsByType = (type) => API.get(`/product/products/${type}`);
 export const getBlogs = () => API.get('/');
