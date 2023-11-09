@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://44.226.145.213:5000/' });
+const API = axios.create({ baseURL: 'https://blog-backend-7kvy.onrender.com' });
 
 // export const getProductsByType = (type) => API.get(`/product/products/${type}`);
 export const getBlogs = () => API.get('/');
