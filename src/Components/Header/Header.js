@@ -73,7 +73,7 @@ const Header = props => {
 	  }
 
 	return <section className={height <= 300 ? 'header-nav' : 'header-nav header-nav-change'}>
-    	<div className='header-logo'>MyBlogs</div>
+    	<div className='header-logo'></div>
 		<div className='header-menus'>
 			<Link to='/' className='menu'>Home</Link>
 			<Link to='/sports' className='menu'>Sports</Link>

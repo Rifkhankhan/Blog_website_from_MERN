@@ -20,7 +20,21 @@
 
 }
 .header-logo{
-    font-size: 30px;
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    background: url('./../../images/logo2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 1rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.header-logo:hover{
+    border: 1.5px solid yellow;
+    transform: scale(1.1);
+    
 }
 .header-menus{
     display: flex;
