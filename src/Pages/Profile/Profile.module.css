@@ -2,10 +2,8 @@
     display: grid;
     grid-template-columns: 15% auto;
 }
-.leftSideBar{
-    min-height: 90vh;
-    background-color: rgb(230, 233, 54);
-}
+
+
 
 .leftSideBar ul{
    display: grid;
@@ -29,7 +27,12 @@
 
  @media screen and (max-width:1050px) {
     .profile_container{
-        display: grid;
-        grid-template-columns: 0% 100%;
+        display: block;
+        width: 100%;
+    }
+
+    .profile_containers.sidebar-show{
+        display: block;
+       
     }
  }

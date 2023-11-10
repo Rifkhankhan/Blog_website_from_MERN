@@ -2,9 +2,12 @@
 import React, { useRef } from "react";
 import './LeftSideBar.css'
 import {Link, Navigate, useNavigate} from 'react-router-dom'
+import open from './../../images/enter white.png'
+import close from './../../images/delete.png'
 
-const LeftSideBar = () => {
+const LeftSideBar = (props) => {
 
+    
     const handleClick = (e) => {
         e.preventDefault()
 
@@ -44,9 +47,44 @@ const LeftSideBar = () => {
 
     }
 
+    const openSidebarHandler = () => {
+        const sidebar = document.getElementById('admin-sidebar')
+        const openBtn = document.getElementById('sidebar-btn')
+        const closeBtn = document.getElementById('sidebar-close-btn')
+
+        if(openBtn.className === "sidebar-btn"){
+            openBtn.className += " sidebar-btn-close";
+            props.showSidebar(true)
+        }
+        else{
+            openBtn.className = "sidebar-btn";
+            props.showSidebar(false)
+
+        }
+        // console.log(openBtn.className);
+        if (sidebar.className === "admin-sidebar" ) {
+            console.log(sidebar.className);
+            sidebar.className += " admin-sidebar-show";
+          } else {
+            sidebar.className = "admin-sidebar";
+          }
+    }
+    const closeSidebarHandler = () => {
+        const sidebar = document.getElementById('admin-sidebar')
+        const openBtn = document.getElementById('sidebar-btn')
+
+        if(sidebar.className.includes(" admin-sidebar-show")){
+            openBtn.className = "sidebar-btn";
+            sidebar.className = "admin-sidebar";
+
+        }
+      
+      
+    }
   return  <div className="admin-sidebar-container">
- 
-    <nav className="admin-sidebar" >
+    <img src={open} alt=""  className='sidebar-btn' id='sidebar-btn' onClick={openSidebarHandler}/>
+    <nav className="admin-sidebar" id="admin-sidebar" >
+        <img src={close} alt=""  className='sidebar-close-btn' id='sidebar-close-btn' onClick={closeSidebarHandler}/>
        
         <ul className="admin-sidebar-ul">
             <li><Link to='/profile' className="parent-btn">Dashboard</Link></li>

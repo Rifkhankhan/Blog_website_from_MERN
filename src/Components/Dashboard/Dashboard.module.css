@@ -7,8 +7,8 @@
     display: grid;
     grid-template-columns: repeat(4,minmax(0,1fr));
     column-gap: 3rem;
-    margin-top: 1rem;
     padding: 1rem;
+    margin-top: 0px !important;
 }
 
 .section1 div{
