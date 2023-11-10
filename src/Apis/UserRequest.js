@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000/' });
+// const API = axios.create({ baseURL: 'http://localhost:5000/' });
+const API = axios.create({ baseURL: 'https://blog-backend-7kvy.onrender.com' });
 
 // export const getUser = (userId) => API.get(`user/${userId}`);
+
+export const logIn = formData => API.post('/login', formData)
+export const signUp = formData => API.post('/signup', formData)
+
+export const googleLogin = formData =>
+	API.post('/user/user_google_login', formData)
 
 export const updateUser = (id, formData) => API.put(`user/${id}`, formData);
 

@@ -25,11 +25,11 @@ const authSlice = createSlice({
     reducers:{
         login(state,action){
             console.log(action.payload);
-            state.authData = action.payload.user
-            state.card = action.payload.user.card
-            state.orders = action.payload.user.orders
-            state.shipped = action.payload.user.shipped
-            state.wish = action.payload.user.wish
+            // state.authData = action.payload.user
+            // state.card = action.payload.user.card
+            // state.orders = action.payload.user.orders
+            // state.shipped = action.payload.user.shipped
+            // state.wish = action.payload.user.wish
             state.authToken = action.payload.token
             localStorage.setItem('user',JSON.stringify(action.payload.token))
             window.location.reload()

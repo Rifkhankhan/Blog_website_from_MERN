@@ -75,7 +75,15 @@
     color: black;
     
 }
+.container .form_container button:disabled
+{
+    cursor: default;
+ 
 
+    background-color: red;
+    color: white;
+    
+}
 .container .form_container div
 {
     width: 100%;

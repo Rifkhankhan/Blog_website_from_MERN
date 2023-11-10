@@ -1,9 +1,49 @@
 /* eslint-disable no-unused-expressions */
 import swal from 'sweetalert';
 // import * as UserApi from '../API/UserRequest';
+import * as UserApi from '../Apis/UserRequest';
 // import {productAction} from '../Redux/ProductSlice'
 // import {authActions} from '../Redux/authSlice'
 
+export const logIn = (formData) => async(dispatch) => {
+    // dispatch({type: "AUTH_START"})
+    try {
+        const {data} = await UserApi.logIn(formData);
+        console.log(data);
+        swal("Logged in!", "Successfully login!", "error")
+
+
+    } catch(error) {
+
+        if (error.response.status === 400) {
+            swal("Please provide an email and password!", "Check the email and password!", "error")
+          } else if (error.response.status === 404) {
+            swal("You don't have webH account!", "Please create an account! Or enter valid credentials!", "error")
+          } else if (error.response.status === 409) {
+            swal("Wrong Password!", "Please check your password!", "error")
+          }
+          
+        console.log(error);
+        dispatch({type: "AUTH_FAIL" })
+    }
+}
+
+export const signUp = (formData) => async(dispatch) => {
+
+    try {
+        const {data} = await UserApi.signUp(formData);
+        console.log(data);
+    } catch(error) {
+
+        if (error.response.status === 409) {
+            swal("User with this email already exists!", "Check the email address!", "error")
+        } else if (error.response.status === 500) {
+            swal("Invalid email!", "Check the email address! And provide working email address!", "warning")
+        }
+
+        console.log(error);
+    }
+}
 // export const updateUser = (id, formData) => async(dispatch)=>{
 //     try{
 //         const {data} = await UserApi.updateUser(id, formData);
