@@ -28,9 +28,9 @@ function DashboardTable({blogs,title}) {
 						<td className={styles.desc}>
 							{blog?.desc}
 						</td>
-						<td>50</td>
-						<td>22</td>
-						<td>11</td>
+						<td>{blog.likes?.length}</td>
+						<td>{blog.comments?.length}</td>
+						<td>{blog.dislike?.length}</td>
 					</tr>)}
          
 		

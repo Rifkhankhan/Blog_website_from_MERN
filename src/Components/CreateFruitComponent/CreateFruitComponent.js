@@ -21,6 +21,7 @@ const CreateShopComponent = () => {
 	const [validation, setValidation] = useState(false)
 	const dispatch = useDispatch()
 	const [selectedFile, setSelectedFile] = useState()
+	const userData = useSelector(state => state.auth.authData)
 	// const isLoading = useSelector(state => state.shopUi.isLoading)
 	// const shops = useSelector(state => state.shop.shops)
 
@@ -28,9 +29,7 @@ const CreateShopComponent = () => {
 
 	const childs = ['Cricket', 'Football', 'Chess', 'VollyBall', 'Carrom',"politics","health","education","apple","huawei","sumsung","elephant","lion","tiger","monkey"]
 
-	useEffect(() => {
-		// dispatch(getShops())
-	}, [])
+
 	const nameHandler = e => {
 		setTitleValid(e.target.value !== '')
 		setName(e.target.value)
@@ -72,14 +71,15 @@ const CreateShopComponent = () => {
     { console.log('valid');
       setLoading(true)
       try {
-        await axios
+		  await axios
           .post(
             'https://api.cloudinary.com/v1_1/homedelivery/image/upload',
             formData
-          )
-          .then(res => {
-            image = res.data.secure_url
-            dispatch(createBlog({title:name,parent:parent,child:child,desc:desc,image:image,userId:"123456"}))
+			)
+			.then(res => {
+				image = res.data.secure_url
+				dispatch(createBlog({title:name,parent:parent,child:child,desc:desc,image:image,user:{id:userData?._id,name:userData?.name}}))
+
           })
       } catch (error) {
         alert(error)

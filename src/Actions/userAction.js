@@ -34,7 +34,7 @@ export const signUp = (formData) => async(dispatch) => {
         const {data} = await UserApi.signUp(formData);
         dispatch(authActions.register(data))
         dispatch(authActions.changeLoading())
-        swal("Sign Up!", "Successfully Signup!", "error")
+        // swal("Sign Up!", "Successfully Signup!", "error")
 
     } catch(error) {
         dispatch(authActions.changeLoading())
@@ -53,7 +53,6 @@ export const autoLogin = (formData) => async(dispatch) => {
 
     try {
         const {data} = await UserApi.autoLogin(formData);
-        console.log(data);
         dispatch(authActions.autoLogin(data))
 
     } catch(error) {

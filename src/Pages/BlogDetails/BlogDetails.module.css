@@ -27,6 +27,28 @@
    text-align: left;
    margin-top: 10px;
    font-weight: 500;
+   
+}
+.blogs .images{
+  display: flex;
+  flex-direction: row;
+  align-items: self-start;
+  margin-top: 1rem;
+}
+.blogs .images div {
+   margin-right: 15px;
+   display: flex;
+   flex-direction: row;
+}
+.blogs .images div img{
+   width: 30px;
+   height: 30px;
+   margin-right: 5px;
+   transition: all 0.3s ease-in-out;
+}
+.blogs .images div img:hover{
+   cursor: pointer;
+   transform: scale(1.1);
 }
 .blogs h2{
     text-align: left;

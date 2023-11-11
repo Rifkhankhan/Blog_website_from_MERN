@@ -17,7 +17,7 @@ import datas from '../../Data/blogs'
 
 function RightSidebar(props) {
 	const [modalOpen, setModalOpen] = useState(false)
-	const blogs = useSelector(state => state.blog.blogs)
+	let blogs = useSelector(state => state.blog.blogs)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
@@ -29,6 +29,14 @@ function RightSidebar(props) {
 		navigate(`/blogs/${id}`)
 	}
 
+	const reverseBlogs = [...blogs].reverse()
+
+	const dates = blogs.map(blog => moment(blog.createdAt).format('MM-DD-YYYY'))
+	const datesFromDatas = datas.map(blog => moment(blog.createdAt).format('MM-DD-YYYY'))
+
+	const uniqueDates = [...new Set(dates)]
+	const uniqueDatesFromDatas = [...new Set(datesFromDatas)]
+	console.log(uniqueDates);
 
 	
 	return (
@@ -44,7 +52,7 @@ function RightSidebar(props) {
 
 			<div className={styles.latestPosts}>
 				<h1>Latest Post</h1>
-				{blogs.length > 0 ? blogs.map(blog => (
+				{reverseBlogs.length > 0 ? reverseBlogs.map(blog => (
 					<div
 						className={styles.parentDiv}
 						onClick={() => onClickHandler(blog._id)}>
@@ -75,7 +83,7 @@ function RightSidebar(props) {
 
 			<div className={styles.latestPosts}>
 				<h1>Popular Post</h1>
-				{blogs.length > 0 ? blogs.map(blog => (
+				{reverseBlogs.length > 0 ? reverseBlogs.map(blog => (
 					<div
 						className={styles.parentDiv}
 						onClick={() => onClickHandler(blog._id)}>
@@ -116,18 +124,18 @@ function RightSidebar(props) {
 
 			<div className={styles.latestPosts}>
 				<h1>Archives</h1>
-				{blogs.length > 0 ? blogs.map(blog => (
+				{uniqueDates.length > 0 ? uniqueDates.map(date => (
 					<p
-						onClick={() => onClickHandler(blog._id)}
+						// onClick={() => onClickHandler(blog._id)}
 						className={styles.archivedDates}>
-						{moment(blog.createdAt).format('MM-DD-YYYY')}
+						{date}
 					</p>
 				)) :
-				datas.map(blog => (
+				uniqueDatesFromDatas.map(date => (
 					<p
-						onClick={() => onClickHandler(blog._id)}
+						// onClick={() => onClickHandler(blog._id)}
 						className={styles.archivedDates}>
-						{moment(blog.createdAt).format('MM-DD-YYYY')}
+						{date}
 					</p>
 				))
 				}

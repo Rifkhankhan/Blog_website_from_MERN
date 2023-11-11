@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBlogs, pushComment } from '../../Actions/BlogAction'
 import datas from '../../Data/blogs'
 import moment from 'moment'
+import like from '../../images/heart.png'
+import dislike from '../../images/dislike.png'
+import comment from '../../images/speech-bubble.png'
+
 // tinymce editi
 import { Editor } from '@tinymce/tinymce-react'
 // comment section
@@ -18,6 +22,8 @@ function BlogDetails() {
 	const navigate = useNavigate()
 	const blogs = useSelector(state => state.blog.blogs)
 	const [reply, setReply] = useState()
+	const userData  = useSelector(state => state.auth.authData)
+	const isAuthenticated = useSelector(state =>state.auth.isAuthenticated)
 
 	useEffect(() => {
 		dispatch(getBlogs())
@@ -31,20 +37,23 @@ function BlogDetails() {
 		setReply(e.target.value)
 	}
 	const user = {
-		id: 'user123456',
-		name: 'Rifkhan',
-		image:
-			'https://res.cloudinary.com/homedelivery/image/upload/v1698829199/HomeDelivery/ztw97mhij4dcohdbkxmv.jpg'
+		id: userData?._id,
+		name: userData?.name,
 	}
 
 	const formSubmitHandler = e => {
 		e.preventDefault()
-		const formData = {
-			user: user,
-			id: id,
-			reply: reply
+		if(isAuthenticated) {
+			const formData = {
+				user: user,
+				id: id,
+				reply: reply
+			}
+			dispatch(pushComment(formData))
+		} else{
+			navigate("/login")
 		}
-		dispatch(pushComment(formData))
+		
 	}
 
 	return (
@@ -53,6 +62,20 @@ function BlogDetails() {
 				{blogs.length > 0 ?<div className={styles.blogs}>
 					<img src={blog[0]?.image} alt="image" />
 					<p className={styles.date}>{date}</p>
+					<div className={styles.images}>
+						<div>
+							<img src={like} alt="" />
+							<span>{blog[0].likes.length}</span>
+						</div>
+						<div>
+							<img src={dislike} alt="" />
+							<span>{blog[0].dislike?.length}</span>
+						</div>
+						<div>
+							<img src={comment} alt="" />
+							<span>{blog[0].comments.length}</span>
+						</div>
+					</div>
 					<h2>{blog[0]?.title}</h2>
 					<p className={styles.desc}>{blog[0]?.desc}</p>
 					<form

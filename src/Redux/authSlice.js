@@ -26,9 +26,10 @@ const authSlice = createSlice({
             state.authData = []
         },
         register(state,action){
-            state.authData = action.payload
+            state.authData = action.payload.user
+            localStorage.clear()
+            localStorage.setItem('token',JSON.stringify(action.payload.token))
             state.isAuthenticated = true
-            localStorage.setItem('user',JSON.stringify(action.payload))
         },
         changeLoading(state){
             state.isLoading = !state.isLoading

@@ -9,14 +9,15 @@ import { getBlogs } from "../../Actions/BlogAction";
 const Blog = () => {
   const dispatch = useDispatch()
   const blogs = useSelector(state => state.blog.blogs)
+  const userData = useSelector(state => state.auth.authData)
+  const myBlogs = blogs.filter(blog => blog.user.id === userData?._id)
 
   useEffect(() => {
     dispatch(getBlogs())
 },[])
-  console.log(blogs);
   return<div className={styles.container}>
     {
-      blogs.map(blog =>    <BlogCard blog={blog} />)
+      myBlogs.map(blog =>    <BlogCard blog={blog} />)
     }
   </div>;
 };

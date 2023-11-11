@@ -99,7 +99,7 @@ const LeftSideBar = (props) => {
                 </ul>
             </li>
             <li><Link to='/' className="parent-btn" onClick={logoutHandler}>Logout</Link></li>
-
+           
             {/* <li>
                 <Link  className="fruit-btn"  onClick={handleClick}>Fruits</Link>
                 <ul className=" admin-sidebar-ul-ul fruit-ul">

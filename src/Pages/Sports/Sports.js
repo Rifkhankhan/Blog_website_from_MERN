@@ -41,7 +41,7 @@ function Sports() {
 								{blog.desc}
 							</p>
 							<div className={styles.details}>
-								<p className={styles.auther}>Rifkhan</p>
+								<p className={styles.auther}>{blog?.user?.name}</p>
 								<p className={styles.date}>{moment(blog.createdAt).format('MM-DD-YYYY')}</p>
 								<p className={styles.date}>{blog.child}</p>
 
