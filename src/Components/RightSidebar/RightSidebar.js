@@ -28,7 +28,7 @@ function RightSidebar(props) {
 	const onClickHandler = id => {
 		navigate(`/blogs/${id}`)
 	}
-	console.log(props.blog?.comments)
+
 
 	
 	return (

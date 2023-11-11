@@ -7,6 +7,7 @@ const API = axios.create({ baseURL: 'https://blog-backend-7kvy.onrender.com' });
 
 export const logIn = formData => API.post('/login', formData)
 export const signUp = formData => API.post('/signup', formData)
+export const autoLogin = formData => API.post('/autologin', formData)
 
 export const googleLogin = formData =>
 	API.post('/user/user_google_login', formData)

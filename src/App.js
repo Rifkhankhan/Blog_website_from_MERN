@@ -4,9 +4,17 @@ import Header from './Components/Header/Header'
 import Routers from './Router/Routers'
 import { BrowserRouter } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { autoLogin } from './Actions/userAction'
 
 function App() {
-
+	const dispatch = useDispatch() 
+	const token  = localStorage.getItem('token')
+	useEffect(() => {
+		if(token !== 'null'){
+			dispatch(autoLogin({token:token}))
+		}
+	},[])
 	
 	return (
 		<div className="App">

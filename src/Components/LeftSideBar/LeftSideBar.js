@@ -4,9 +4,11 @@ import './LeftSideBar.css'
 import {Link, Navigate, useNavigate} from 'react-router-dom'
 import open from './../../images/enter white.png'
 import close from './../../images/delete.png'
+import { authActions } from "../../Redux/authSlice";
+import { useDispatch } from "react-redux";
 
 const LeftSideBar = (props) => {
-
+    const dispatch = useDispatch()
     
     const handleClick = (e) => {
         e.preventDefault()
@@ -76,10 +78,11 @@ const LeftSideBar = (props) => {
         if(sidebar.className.includes(" admin-sidebar-show")){
             openBtn.className = "sidebar-btn";
             sidebar.className = "admin-sidebar";
-
         }
-      
-      
+    }
+
+    const logoutHandler = () => {
+        dispatch(authActions.logout())
     }
   return  <div className="admin-sidebar-container">
     <img src={open} alt=""  className='sidebar-btn' id='sidebar-btn' onClick={openSidebarHandler}/>
@@ -95,6 +98,8 @@ const LeftSideBar = (props) => {
                     <li><Link to='/profile/create-blog'>Create Blog</Link></li>
                 </ul>
             </li>
+            <li><Link to='/' className="parent-btn" onClick={logoutHandler}>Logout</Link></li>
+
             {/* <li>
                 <Link  className="fruit-btn"  onClick={handleClick}>Fruits</Link>
                 <ul className=" admin-sidebar-ul-ul fruit-ul">

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from '../Pages/Home/Home'
 import Sports from '../Pages/Sports/Sports'
@@ -17,6 +17,7 @@ import News from '../Pages/News/News'
 const Routers = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 
 	// const PrivateRoute = ({ children }) => {
 	// 	const isAuthenticated = useSelector(state => state.netflixAuth.isAuthenticated)
@@ -46,11 +47,11 @@ const Routers = () => {
 		 <Route path="/animals" element={<Animals />} />
 		 <Route path="/news" element={<News />} />
 		 <Route path="/blogs/:id" element={<BlogDetails />} />
-		 <Route path="/profile" element={<Profile />} >
+		{isAuthenticated && <Route path="/profile" element={<Profile />} >
 		 	 <Route index element={<Dashboard /> } />
 		 	 <Route path='blogs' element={<Blogs /> } />
 			 <Route path='create-blog' element={<CreateBlog /> } />
-		 </Route>
+		 </Route>}
 		 <Route path="*" element={<Home />} />
 
 		 	{/* {isAuthenticated && (

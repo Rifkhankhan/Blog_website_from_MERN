@@ -3,18 +3,19 @@ import swal from 'sweetalert';
 // import * as UserApi from '../API/UserRequest';
 import * as UserApi from '../Apis/UserRequest';
 // import {productAction} from '../Redux/ProductSlice'
-// import {authActions} from '../Redux/authSlice'
+import {authActions} from '../Redux/authSlice'
 
 export const logIn = (formData) => async(dispatch) => {
     // dispatch({type: "AUTH_START"})
     try {
         const {data} = await UserApi.logIn(formData);
-        console.log(data);
-        swal("Logged in!", "Successfully login!", "error")
+        dispatch(authActions.login(data))
+        dispatch(authActions.changeLoading())
 
 
     } catch(error) {
-
+        dispatch(authActions.changeLoading())
+        
         if (error.response.status === 400) {
             swal("Please provide an email and password!", "Check the email and password!", "error")
           } else if (error.response.status === 404) {
@@ -24,7 +25,6 @@ export const logIn = (formData) => async(dispatch) => {
           }
           
         console.log(error);
-        dispatch({type: "AUTH_FAIL" })
     }
 }
 
@@ -32,8 +32,32 @@ export const signUp = (formData) => async(dispatch) => {
 
     try {
         const {data} = await UserApi.signUp(formData);
-        console.log(data);
+        dispatch(authActions.register(data))
+        dispatch(authActions.changeLoading())
+        swal("Sign Up!", "Successfully Signup!", "error")
+
     } catch(error) {
+        dispatch(authActions.changeLoading())
+
+        if (error.response.status === 409) {
+            swal("User with this email already exists!", "Check the email address!", "error")
+        } else if (error.response.status === 500) {
+            swal("Invalid email!", "Check the email address! And provide working email address!", "warning")
+        }
+
+        console.log(error);  
+    }
+}
+
+export const autoLogin = (formData) => async(dispatch) => {
+
+    try {
+        const {data} = await UserApi.autoLogin(formData);
+        console.log(data);
+        dispatch(authActions.autoLogin(data))
+
+    } catch(error) {
+        dispatch(authActions.changeLoading())
 
         if (error.response.status === 409) {
             swal("User with this email already exists!", "Check the email address!", "error")

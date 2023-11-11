@@ -20,8 +20,7 @@ const Home = () => {
 		navigate(`/blogs/${id}`)
 	}
 	// const date = moment(blog[0]?.createdAt).format('MM-DD-YYYY');
-	console.log(datas)
-	console.log(blogs)
+
 	useEffect(() => {
 		dispatch(getBlogs())
 	}, [])

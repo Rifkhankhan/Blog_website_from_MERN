@@ -4,6 +4,9 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import  './Header.css'
 import profile from './../../images/profile.png'
 import arrow from '../../images/arrow-up (2).png'
+import { useSelector } from 'react-redux'
+import login from './../../images/log-in.png'
+
 function getWindowDimensions() {
 	const { innerWidth: width, innerHeight: height } = window
 	return {
@@ -14,8 +17,11 @@ function getWindowDimensions() {
 
 const Header = props => {
 	const [settingIsOpen, setSettingIsOpen] = useState(false)
-  
+	const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 	const [height,setHeight] = useState()
+	const navigate = useNavigate()
+
+	
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -80,9 +86,12 @@ const Header = props => {
 			<Link to='/technology' className='menu'>Technology</Link>
 			<Link to='/animals' className='menu'>Animals</Link>
 			<Link to='/news' className='menu'>News</Link>
-			<Link to='/profile' className='menu profile-btn'>
+			{isAuthenticated && <Link to='/profile' className='menu profile-btn'>
 				<img src={profile} alt="profile" />
-			</Link>
+			</Link>}
+			{!isAuthenticated && <Link to='/login' className='menu profile-btn'>
+				<img src={login} alt="login" />
+			</Link>}
 			<a href="javascript:void(0);"  className="icon" onClick={myFunction}>&#9776;</a>
 			<div className='responsived-card' id="responsived-card">
 				<img className='arrow' src={arrow} alt=''/>

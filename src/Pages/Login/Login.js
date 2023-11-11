@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Login.module.css'
 import logo from './../../images/profile.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import google from '../../images/google-plus.png'
 import linkedin from './../../images/linkedin.png'
 import fb from './../../images/facebook.png'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {authActions} from '../../Redux/authSlice'
 import { logIn, signUp } from '../../Actions/userAction'
 function Login() {
 	const [login, setLogin] = useState(true)
+	const isLoading = useSelector(state => state.auth.isLoading)
+	const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 	const dispatch = useDispatch()
-	
+	const navigate = useNavigate()
     const [data,setData] = useState({name: '', email: '', password: ''});
 
 
@@ -28,19 +31,25 @@ function Login() {
         setData({...data, [e.target.name]: e.target.value})
     }
 
+	if(isAuthenticated) {
+		navigate('/profile')
+	}
+
 	const handleSubmit = (e) => {
         // page will not redirect default
         e.preventDefault();
-		
+		dispatch(authActions.changeLoading())
+	
 
         if(login){
 			dispatch(logIn(data))
-            // data.password === data.confirmPassword ? dispatch(signUp(data)) : setConfirmPassword(false);
         } else {
 			dispatch(signUp(data))
-
-            // dispatch(logIn(data))
         }
+
+	
+
+		
     }
 	const checkValidation = () => {
     
@@ -71,8 +80,9 @@ function Login() {
                 <input type="email" name="email" defaultValue={data.email} onChange={handleChange} placeholder="Enter Email" required />
                 <input type="password" name="password" defaultValue={data.password} onChange={handleChange} placeholder="Enter Password" required/>
 				
-				{login ? <button  disabled={!(data.email.includes('@') && data.password.length >= 8)}>LOG IN</button> : <button disabled={!validation}>REGISTER</button>}
-
+				{!isLoading && (login ? <button  disabled={!(data.email.includes('@') && data.password.length >= 8)}>LOG IN</button> : <button disabled={!validation}>REGISTER</button>)}
+				{isLoading &&  <button style={{background:'green', color:'white'}}  disabled={true}>LOADING...</button>}
+				
 				<div>
 					{Login && <p>FORGOT PASSWORD</p>}
 					{login ? (

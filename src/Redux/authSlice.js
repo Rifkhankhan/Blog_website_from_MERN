@@ -8,35 +8,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialAuthState = {
     isAuthenticated:false,
     authData:[],
-    orders:[],
-    shipped:[],
-    returns:[],
-    cancel:[],
-    processing:[],
-    pending:[],
-    ship:[],
-    card:[],
-    wish:[],
-    authToken:''
+    isLoading:false
 }
 const authSlice = createSlice({
     name:'auth',
     initialState:initialAuthState,
     reducers:{
         login(state,action){
-            console.log(action.payload);
-            // state.authData = action.payload.user
-            // state.card = action.payload.user.card
-            // state.orders = action.payload.user.orders
-            // state.shipped = action.payload.user.shipped
-            // state.wish = action.payload.user.wish
-            state.authToken = action.payload.token
-            localStorage.setItem('user',JSON.stringify(action.payload.token))
-            window.location.reload()
-
-            /*
-            card orders returns shipped
-            */
+            state.authData = action.payload.user
+            localStorage.clear()
+            localStorage.setItem('token',JSON.stringify(action.payload.token))
+            state.isAuthenticated = true
         },
         logout(state){
             localStorage.clear()
@@ -48,16 +30,17 @@ const authSlice = createSlice({
             state.isAuthenticated = true
             localStorage.setItem('user',JSON.stringify(action.payload))
         },
+        changeLoading(state){
+            state.isLoading = !state.isLoading
+        },
         checkAuthentication(state){
             return state.isAuthenticated
         },
         autoLogin(state,action){
-            state.isAuthenticated = !!localStorage.getItem('user')
-            state.authData = action.payload
-            console.log(action.payload);
-            // state.card = action.payload.user?.card
-            // state.orders = action.payload.user?.orders
-            // state.shipped = action.payload.user?.shipped
+            state.authData = action.payload.user
+            localStorage.clear()
+            localStorage.setItem('token',JSON.stringify(action.payload.token))
+            state.isAuthenticated = true
         },
         updateUser(state,action){
             state.authData = action.payload
