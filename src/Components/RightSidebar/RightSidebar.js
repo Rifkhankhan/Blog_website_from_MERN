@@ -125,7 +125,7 @@ function RightSidebar(props) {
 				</div>
 			)}
 
-			<div className={styles.latestPosts}>
+			{!props.id && <div className={styles.latestPosts}>
 				<h1>Archives</h1>
 				{uniqueDates.length > 0 ? uniqueDates.map(date => (
 					<p
@@ -142,7 +142,7 @@ function RightSidebar(props) {
 					</p>
 				))
 				}
-			</div>
+			</div>}
 		</div>
 	)
 }

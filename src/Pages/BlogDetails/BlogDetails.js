@@ -24,7 +24,8 @@ function BlogDetails() {
 	const [reply, setReply] = useState()
 	const userData  = useSelector(state => state.auth.authData)
 	const isAuthenticated = useSelector(state =>state.auth.isAuthenticated)
-
+	const [archiveActivated,setArchivedActivated] = useState(false)
+	const [archivedDate,setDate] = useState()
 	useEffect(() => {
 		dispatch(getBlogs())
 	}, [id])
@@ -80,6 +81,19 @@ function BlogDetails() {
 		dispatch(disLikeBlog(data))
 
 	}
+
+	// archiveActivatedHandler
+	const archiveActivatedHandler = (date) => {
+		setDate(date)
+		setArchivedActivated(true)
+	}
+
+	// get archived blogs based in the date
+	const archivedBlogs = blogs.filter(blog => moment(blog.createdAt).format('MM-DD-YYYY') === date)
+
+	const headingHandler = () => {
+		setArchivedActivated(false)
+	}
 	return (
 		<div className={styles.BlogDetails}>
 			<section className={styles.blogs_colomn}>
@@ -134,7 +148,7 @@ function BlogDetails() {
 					</form>
 				</div>
 				}
-				<RightSidebar color="rgb(14, 75, 95)" detail={true} blog={blog[0] ? blog[0] : []} />
+				<RightSidebar archiveActivatedHandler={archiveActivatedHandler} id={id} color="rgb(14, 75, 95)" detail={true} blog={blog[0] ? blog[0] : []} />
 			</section>
 		</div>
 	)
