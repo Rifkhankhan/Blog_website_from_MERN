@@ -30,8 +30,43 @@ const blogSlice = createSlice ({
         addWish(state,action){
             state.wish = action.payload
         },
+        likeBlog(state,action){
+            // get the specific blog
+            let blog = state.blogs.find(blog => blog._id === action.payload.blogId) 
+
+            // get the index of the blog in the blogs array
+            const index = state.blogs.indexOf(blog)
+
+            // check whether the use is already liked or not
+            if(!blog.likes.includes(action.payload.userId)){
+                console.log("liked");
+                // push the id into the blog
+                blog.likes.push(action.payload.userId)
+                console.log(blog);
+
+            } else {
+                console.log("disliked");
+
+                   // remove id into the blog
+                   blog.likes = blog.likes.filter(id => id !== action.payload.userId)
+            }
+
+            // remove the blog from the blogs
+            state.blogs = state.blogs.filter(blog => blog._id !== action.payload.blogId)
+                            
+            // put the blog the previous place in the blogs
+            state.blogs.splice(index,0,blog)
+        },
+        disLikeBlog(state,action){
+            let blog = state.blogs.find(blog => blog._id === action.payload.blogId)
+            blog.likes.push(action.payload.userId)
+
+            state.blogs = state.blogs.filter(blog => blog._id !== action.payload.blogId)
+            state.blogs.push(blog)
+            console.log(state.blogs);
+        },
         getBlogs(state,action){
-            state.blogs = action.payload
+            state.blogs = [...action.payload]
         },
         getCardLength(state){
             state.cardItems = JSON.parse(localStorage.getItem('user')).result.card.length

@@ -42,3 +42,23 @@ export const getComments = (id) => async dispatch => {
 		console.log(err);
 	}
 }
+
+export const likeBlog = (formData) => async dispatch => {
+	try{
+		dispatch(blogAction.likeBlog(formData))
+		await blogApi.toggleLike(formData)
+	} catch(err){
+		console.log(err);
+	}
+}
+
+export const disLikeBlog = (formData) => async dispatch => {
+	try{
+		dispatch(blogAction.disLikeBlog(formData))
+
+	 await blogApi.toggleLike(formData)
+
+	} catch(err){
+		console.log(err);
+	}
+}

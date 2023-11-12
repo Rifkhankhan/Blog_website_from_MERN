@@ -4,7 +4,7 @@ import RightSidebar from '../../Components/RightSidebar/RightSidebar'
 import cr7 from './../../images/vk.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getBlogs, pushComment } from '../../Actions/BlogAction'
+import { disLikeBlog, getBlogs, likeBlog, pushComment } from '../../Actions/BlogAction'
 import datas from '../../Data/blogs'
 import moment from 'moment'
 import like from '../../images/heart.png'
@@ -29,6 +29,10 @@ function BlogDetails() {
 		dispatch(getBlogs())
 	}, [id])
 
+	useEffect(() => {
+		console.log('changed');
+	}, [blogs])
+	
 	const blog = blogs?.filter(blog => blog._id === id)
 
 	const date = moment(blog[0]?.createdAt).format('MM-DD-YYYY')
@@ -56,6 +60,26 @@ function BlogDetails() {
 		
 	}
 
+	const likeHandler = (e) => {
+		e.preventDefault()
+		const data = {
+			userId:userData._id,
+			blogId:id
+		}
+
+		dispatch(likeBlog(data))
+	}
+
+	const disLikeHandler = (e) => {
+		e.preventDefault()
+
+		const data = {
+			userId:userData._id,
+			blogId:id
+		}
+		dispatch(disLikeBlog(data))
+
+	}
 	return (
 		<div className={styles.BlogDetails}>
 			<section className={styles.blogs_colomn}>
@@ -64,11 +88,11 @@ function BlogDetails() {
 					<p className={styles.date}>{date}</p>
 					<div className={styles.images}>
 						<div>
-							<img src={like} alt="" />
-							<span>{blog[0].likes.length}</span>
+							<img src={like} alt="" onClick={likeHandler}/>
+							<span>{blog[0].likes?.length}</span>
 						</div>
 						<div>
-							<img src={dislike} alt="" />
+							<img src={dislike} alt="" onClick={disLikeHandler}/>
 							<span>{blog[0].dislike?.length}</span>
 						</div>
 						<div>

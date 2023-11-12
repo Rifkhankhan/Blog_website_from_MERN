@@ -29,6 +29,10 @@ function RightSidebar(props) {
 		navigate(`/blogs/${id}`)
 	}
 
+	const archivedHandler = (date) => {
+		props.archiveActivatedHandler(date)
+	}
+
 	const reverseBlogs = [...blogs].reverse()
 
 	const dates = blogs.map(blog => moment(blog.createdAt).format('MM-DD-YYYY'))
@@ -36,7 +40,6 @@ function RightSidebar(props) {
 
 	const uniqueDates = [...new Set(dates)]
 	const uniqueDatesFromDatas = [...new Set(datesFromDatas)]
-	console.log(uniqueDates);
 
 	
 	return (
@@ -126,14 +129,14 @@ function RightSidebar(props) {
 				<h1>Archives</h1>
 				{uniqueDates.length > 0 ? uniqueDates.map(date => (
 					<p
-						// onClick={() => onClickHandler(blog._id)}
+					onClick={() => archivedHandler(date)}
 						className={styles.archivedDates}>
 						{date}
 					</p>
 				)) :
 				uniqueDatesFromDatas.map(date => (
 					<p
-						// onClick={() => onClickHandler(blog._id)}
+						onClick={() => archivedHandler(date)}
 						className={styles.archivedDates}>
 						{date}
 					</p>

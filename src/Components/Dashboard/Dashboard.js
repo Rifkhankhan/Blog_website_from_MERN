@@ -22,11 +22,21 @@ const Dashboard = () => {
   },[])
 
 
-  const myBlogs = blogs.filter(blog => blog.user.id === user._id)
-  
-  let commentsLength = myBlogs?.reduce(function(accumulator,current){
-	return accumulator + current.comments.length
-  },0)
+	//get my blogs   
+	const myBlogs = blogs.filter(blog => blog.user.id === user._id)
+
+	//get the length of all comments
+	let commentsLength = myBlogs?.reduce(function(accumulator,current){
+		return accumulator + current.comments.length
+	},0)
+
+	//get blogs i liked
+	 const myLikedBlogs = blogs.filter(blog => blog.likes.includes(user._id))
+
+	//  get blogs i commented
+	const mycommentedBlogs = blogs.filter(blog => blog.comments.includes(blog.comments.some(comment => comment.user.id === user._id)))
+	// console.log(mycommentedBlogs);
+
 
 	return (
 		<div className={styles.Dashboard}>
@@ -37,8 +47,8 @@ const Dashboard = () => {
 				<Card img={dislike} count={56} text="Dislikes i got"/>
 			</section>
       		{myBlogs.length > 0 ?  <DashboardTable  blogs={myBlogs} title="My Blogs"/> : <DashboardTable  blogs={datas} title="My Blogs"/>}
-      		{blogs.length > 0 ?  <DashboardTable  blogs={blogs} title="Blogs i liked"/> : <DashboardTable  blogs={datas} title="My Blogs"/>}
-      		{blogs.length > 0 ?  <DashboardTable  blogs={blogs} title="Blogs i commented"/> : <DashboardTable  blogs={datas} title="My Blogs"/>}
+      		{myLikedBlogs.length > 0 ?  <DashboardTable  blogs={myLikedBlogs} title="Blogs i liked"/> : <DashboardTable  blogs={datas} title="Blogs i liked"/>}
+      		{/* {mycommentedBlogs.length > 0 ?  <DashboardTable  blogs={mycommentedBlogs} title="Blogs i commented"/> : <DashboardTable  blogs={datas} title="Blogs i commented"/>} */}
 
 	
 		</div>

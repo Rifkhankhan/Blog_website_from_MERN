@@ -4,8 +4,9 @@ import Header from './Components/Header/Header'
 import Routers from './Router/Routers'
 import { BrowserRouter } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { autoLogin } from './Actions/userAction'
+import { getBlogs } from './Actions/BlogAction'
 
 function App() {
 	const dispatch = useDispatch() 
@@ -14,6 +15,8 @@ function App() {
 		if(token !== 'null'){
 			dispatch(autoLogin({token:token}))
 		}
+
+		dispatch(getBlogs())
 	},[])
 	
 	return (
