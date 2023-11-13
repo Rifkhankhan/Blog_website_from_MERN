@@ -31,7 +31,7 @@
     display: grid;
     grid-template-columns: 75% 25%;
     width: 90%;
-    margin-inline: auto;
+    margin-inline: auto !important;
     margin-top: 1rem;
     column-gap: 0.5rem;
 
@@ -60,18 +60,7 @@
     cursor: pointer;
 }
 
-
-
-@media screen and (max-width:900px) {
-    .blogs_colomns{
-        display: grid;
-        grid-template-columns: 100% 0%;
-      
-    
-    }
-}
-
- @media screen and (max-width: 1145px) {
+@media screen and (max-width: 1145px) {
     .blogs_colomns{
       
         width: 95%;
@@ -90,6 +79,17 @@
 
 
 }
+
+
+@media screen and (max-width:900px) {
+    .blogs_colomns{
+        display: grid;
+        grid-template-columns: 100% 0%;
+      
+    
+    }
+}
+
 
 
 

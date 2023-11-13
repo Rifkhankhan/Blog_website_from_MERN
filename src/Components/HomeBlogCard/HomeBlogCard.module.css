@@ -1,6 +1,3 @@
-
-
-
 .blog{
     background-color: rgb(28, 6, 75);
     height: 60vh;
@@ -20,6 +17,7 @@
 .blog .image{
     width: 100%;
     height: 60%;
+
 }
 
 .blog .title{

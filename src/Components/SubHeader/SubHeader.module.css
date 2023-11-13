@@ -66,9 +66,31 @@
          margin: auto;
 
    
-   }
+      }
 
 
   
     
+   }
+
+   @media screen and (max-width: 425px) {
+      .subHeader{
+         display: block;
+         background-color: rgb(182, 210, 21);
+         width: 70%;
+         margin: auto;
+         font-size: 8px;
+
+      }
+   }
+
+   @media screen and (max-width: 360px) {
+      .subHeader{
+         display: block;
+         background-color: rgb(182, 210, 21);
+         width: 70%;
+         margin: auto;
+         font-size: 5px;
+
+      }
    }

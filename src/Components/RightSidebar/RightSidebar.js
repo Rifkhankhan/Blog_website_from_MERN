@@ -41,6 +41,14 @@ function RightSidebar(props) {
 	const uniqueDates = [...new Set(dates)]
 	const uniqueDatesFromDatas = [...new Set(datesFromDatas)]
 
+	// get popular posts
+	console.log(blogs);
+
+	// const sortedBlogs = blogs.slice().sort((a,b) => a.likes.length - b.likes.length)
+
+	// const sortedIndices = blogs.map((ele,index) => index).sort((a,b) => a.likes?.length - b.likes?.length)
+	// const sortedArray = sortedIndices.map(index => blogs[index])
+	// console.log(sortedArray);
 	
 	return (
 		<div
