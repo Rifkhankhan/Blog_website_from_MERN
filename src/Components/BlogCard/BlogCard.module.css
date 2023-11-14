@@ -91,3 +91,105 @@
     opacity: 0.4;
     
  }
+
+ @media screen and (max-width:900px) {
+    .container{
+        height: 30vh;
+    }
+
+    .date{
+        font-size: 10px;
+    }
+
+    .title{
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        font-size: 15px;
+        padding-bottom: 5px;
+
+    }
+    .desc{
+        font-size: 10px;
+
+        -webkit-line-clamp: 6;
+        line-clamp: 6;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .container{
+        height: 25vh;
+    }
+
+    .date{
+        font-size: 10px;
+    }
+
+    .title{
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        font-size: 15px;
+        padding-bottom: 5px;
+
+    }
+    .desc{
+        font-size: 10px;
+
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .container{
+        height: 20vh;
+    }
+
+    .date{
+        font-size: 10px;
+    }
+
+    .title{
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        font-size: 10px;
+        padding-bottom: 2px;
+
+    }
+    .desc{
+        font-size: 7px;
+
+        -webkit-line-clamp: 6;
+        line-clamp: 6;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .container{
+        height: 15vh;
+    }
+
+    .date{
+        font-size: 10px;
+    }
+
+    .title{
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        font-size: 10px;
+        padding-bottom: 2px;
+
+    }
+    .desc{
+        font-size: 7px;
+
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
+    }
+
+    .content{
+   
+        padding-inline:.5rem;
+    
+    }
+}

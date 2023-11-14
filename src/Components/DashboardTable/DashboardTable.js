@@ -13,7 +13,7 @@ function DashboardTable({blogs,title}) {
 						<th>Date</th>
 						<th>Title</th>
 						<th>Image</th>
-						<th>Description</th>
+						{/* <th>Description</th> */}
 						<th>Likes</th>
 						<th>Comments</th>
 						<th>Dislikes</th>
@@ -25,9 +25,9 @@ function DashboardTable({blogs,title}) {
 						<td>
 							<img src={blog?.image} alt="image" />
 						</td>
-						<td className={styles.desc}>
+						{/* <td className={styles.desc}>
 							{blog?.desc}
-						</td>
+						</td> */}
 						<td>{blog.likes?.length}</td>
 						<td>{blog.comments?.length}</td>
 						<td>{blog.dislike?.length}</td>
