@@ -16,7 +16,7 @@ const CreateShopComponent = () => {
 	const [childValid, setChildValid] = useState(false)
 	const [imageValid, setImageValid] = useState(false)
 	const [formValid, setFormValid] = useState(true)
-  const [loading,setLoading] = useState(false)
+	const [loading, setLoading] = useState(false)
 
 	const [validation, setValidation] = useState(false)
 	const dispatch = useDispatch()
@@ -25,15 +25,29 @@ const CreateShopComponent = () => {
 	// const isLoading = useSelector(state => state.shopUi.isLoading)
 	// const shops = useSelector(state => state.shop.shops)
 
-	const parant = ['News', 'Sports', 'Technology',"Animals"]
+	const parant = ['News', 'Sports', 'Technology', 'Animals']
 
-	const childs = ['Cricket', 'Football', 'Chess', 'VollyBall', 'Carrom',"politics","health","education","apple","huawei","sumsung","elephant","lion","tiger","monkey"]
-
+	const childs = [
+		'Cricket',
+		'Football',
+		'Chess',
+		'VollyBall',
+		'Carrom',
+		'politics',
+		'health',
+		'education',
+		'apple',
+		'huawei',
+		'sumsung',
+		'elephant',
+		'lion',
+		'tiger',
+		'monkey'
+	]
 
 	const nameHandler = e => {
 		setTitleValid(e.target.value !== '')
 		setName(e.target.value)
-
 	}
 	const parentHandler = e => {
 		setParantValid(e.target.value !== '')
@@ -47,19 +61,20 @@ const CreateShopComponent = () => {
 	}
 
 	const descHandler = e => {
-
-    setDescValid(e.target.value !== '')
+		setDescValid(e.target.value !== '')
 		setDesc(e.target.value)
-
-
 	}
 
 	const formSubmitHandler = async e => {
 		e.preventDefault()
-	
-    setFormValid(titleValid && descValid && parentValid && childValid && imageValid)
 
-    console.log(titleValid && descValid && parentValid && childValid && imageValid);
+		setFormValid(
+			titleValid && descValid && parentValid && childValid && imageValid
+		)
+
+		console.log(
+			titleValid && descValid && parentValid && childValid && imageValid
+		)
 
 		let image
 		const formData = new FormData()
@@ -67,33 +82,38 @@ const CreateShopComponent = () => {
 		formData.append('fileName', selectedFile?.name)
 		formData.append('upload_preset', 'homedelivery')
 
-    if(titleValid && descValid && parentValid && childValid && imageValid)
-    { console.log('valid');
-      setLoading(true)
-      try {
-		  await axios
-          .post(
-            'https://api.cloudinary.com/v1_1/homedelivery/image/upload',
-            formData
-			)
-			.then(res => {
-				image = res.data.secure_url
-				dispatch(createBlog({title:name,parent:parent,child:child,desc:desc,image:image,user:{id:userData?._id,name:userData?.name}}))
-
-          })
-      } catch (error) {
-        alert(error)
-      }
-    }
-    else {
-      console.log('invalid');
-    }
-		
-
+		if (titleValid && descValid && parentValid && childValid && imageValid) {
+			console.log('valid')
+			setLoading(true)
+			try {
+				await axios
+					.post(
+						'https://api.cloudinary.com/v1_1/homedelivery/image/upload',
+						formData
+					)
+					.then(res => {
+						image = res.data.secure_url
+						dispatch(
+							createBlog({
+								title: name,
+								parent: parent,
+								child: child,
+								desc: desc,
+								image: image,
+								user: { id: userData?._id, name: userData?.name }
+							})
+						)
+					})
+			} catch (error) {
+				alert(error)
+			}
+		} else {
+			console.log('invalid')
+		}
 	}
 
 	const catchFileDataHandler = e => {
-    setImageValid(e.name !== '')
+		setImageValid(e.name !== '')
 		setSelectedFile(e)
 	}
 
@@ -105,81 +125,110 @@ const CreateShopComponent = () => {
 			<form onSubmit={formSubmitHandler} className="CreateFruitComponent-form">
 				<div className="CreateFruitComponent-form-group">
 					<label>Title</label>
-					{!loading && <input
-						type="text"
-						defaultValue={name}
-						onChange={nameHandler}
-						placeholder="Enter Title"
-          ></input>}
-         {loading && <input
-						type="text"
-						defaultValue={name}
-						onChange={nameHandler}
-						placeholder="Enter Title"
-            disabled
-          ></input>}
+					{!loading && (
+						<input
+							type="text"
+							defaultValue={name}
+							onChange={nameHandler}
+							placeholder="Enter Title"></input>
+					)}
+					{loading && (
+						<input
+							type="text"
+							defaultValue={name}
+							onChange={nameHandler}
+							placeholder="Enter Title"
+							disabled></input>
+					)}
 				</div>
 
 				<div className="CreateFruitComponent-form-group">
 					<label>Parent</label>
-				{!loading &&	<select onChange={parentHandler} className="parent-select">
-						<option value="">Select Parent Category</option>
-						{parant.map(shop => (
-							<option key={shop} value={shop}>
-								{shop}
-							</option>
-						))}
-					</select>}
-          {loading &&	<select onChange={parentHandler} className="parent-select" disabled>
-						<option value="">Select Parent Category</option>
-						{parant.map(shop => (
-							<option key={shop} value={shop}>
-								{shop}
-							</option>
-						))}
-					</select>}
+					{!loading && (
+						<select onChange={parentHandler} className="parent-select">
+							<option value="">Select Parent Category</option>
+							{parant.map(shop => (
+								<option key={shop} value={shop}>
+									{shop}
+								</option>
+							))}
+						</select>
+					)}
+					{loading && (
+						<select onChange={parentHandler} className="parent-select" disabled>
+							<option value="">Select Parent Category</option>
+							{parant.map(shop => (
+								<option key={shop} value={shop}>
+									{shop}
+								</option>
+							))}
+						</select>
+					)}
 					{/* <input defaultValue={category} placeholder="Enter Fruit Category"  onChange={categoryHandler}></input> */}
 				</div>
 
 				<div className="CreateFruitComponent-form-group">
 					<label>Child</label>
-					{!loading && <select onChange={childHandler} >
-						<option value="">Select Child Category</option>
+					{!loading && (
+						<select onChange={childHandler}>
+							<option value="">Select Child Category</option>
 
-						{childs.map(shop => (
-							<option key={shop} value={shop}>
-								{shop}
-							</option>
-						))}
-					</select>}
-          {loading && <select onChange={childHandler} disabled >
-						<option value="">Select Child Category</option>
+							{childs.map(shop => (
+								<option key={shop} value={shop}>
+									{shop}
+								</option>
+							))}
+						</select>
+					)}
+					{loading && (
+						<select onChange={childHandler} disabled>
+							<option value="">Select Child Category</option>
 
-						{childs.map(shop => (
-							<option key={shop} value={shop}>
-								{shop}
-							</option>
-						))}
-					</select>}
+							{childs.map(shop => (
+								<option key={shop} value={shop}>
+									{shop}
+								</option>
+							))}
+						</select>
+					)}
 					{/* <input defaultValue={category} placeholder="Enter Fruit Category"  onChange={categoryHandler}></input> */}
 				</div>
 
 				<div className="CreateFruitComponent-form-group">
 					<label>Description</label>
-					{!loading && <textarea onChange={descHandler} value={desc} placeholder="Enter Description" />}
-					{loading && <textarea onChange={descHandler} value={desc} placeholder="Enter Description" disabled/>}
+					{!loading && (
+						<textarea
+							onChange={descHandler}
+							value={desc}
+							placeholder="Enter Description"
+						/>
+					)}
+					{loading && (
+						<textarea
+							onChange={descHandler}
+							value={desc}
+							placeholder="Enter Description"
+							disabled
+						/>
+					)}
 				</div>
 
 				<div className="CreateFruitComponent-form-group">
 					<label>Upload Image</label>
-					<ImageUploader onInput={catchFileDataHandler} loading={loading}/>
+					<ImageUploader onInput={catchFileDataHandler} loading={loading} />
 				</div>
 
 				<div className="CreateFruitComponent-form-btn">
-				{!loading &&	<button type="submit" className="submit-btn notLoading-btn" >
-						Submit
-					</button>}
-          {loading && <button className="submit-btn loading-btn " disabled={true}>Loading</button>}
+					{!loading && (
+						<button type="submit" className="submit-btn notLoading-btn">
+							Submit
+						</button>
+					)}
+					{loading && (
+						<button className="submit-btn loading-btn " disabled={true}>
+							Loading
+						</button>
+					)}
 				</div>
 			</form>
 		</div>

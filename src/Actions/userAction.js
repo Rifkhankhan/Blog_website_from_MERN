@@ -138,6 +138,29 @@ export const googleLogin = (formData) => async(dispatch) => {
         console.log(error);
     }
 }
+
+export const googleSignup = (formData) => async(dispatch) => {
+
+    try {
+        const {data} = await UserApi.googleSignup(formData); 
+        dispatch(authActions.googleSignup(data))
+        dispatch(authActions.changeLoading())
+
+
+    } catch(error) {
+        dispatch(authActions.changeLoading())
+
+        if (error.response.status === 400) {
+            swal("Invalid Token!", "try again!", "error")
+        } else if (error.response.status === 409) {
+            swal("User with this email already exists", "please login!", "warning")
+        }else if (error.response.status === 500) {
+            swal("failed to google login", "please register!", "warning")
+        }
+
+        console.log(error);
+    }
+}
 // export const updateUser = (id, formData) => async(dispatch)=>{
 //     try{
 //         const {data} = await UserApi.updateUser(id, formData);

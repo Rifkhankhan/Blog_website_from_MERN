@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { authActions } from '../../Redux/authSlice'
 import Google from '../../google'
 
-import { logIn, signUp, forgotPassword, googleLogin } from '../../Actions/userAction'
+import { logIn, signUp, forgotPassword, googleLogin, googleSignup } from '../../Actions/userAction'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function Login() {
@@ -106,7 +106,16 @@ function Login() {
 		if(e.credential) {
 			const decodedToken = decodeToken(e.credential)
 			setUserData(decodedToken)
-			dispatch(googleLogin(decodedToken))
+			if(login) {
+				console.log('login');
+
+				dispatch(googleLogin(decodedToken))
+			}
+			else {
+				console.log('logup');
+				dispatch(googleSignup(decodedToken))
+
+			}
 		}
 	}
 

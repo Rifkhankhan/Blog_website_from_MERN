@@ -12,6 +12,7 @@ export const forgotPassword = formData => API.post('/forgotPassword', formData)
 export const resetPassword = formData => API.put('/resetPassword', formData)
 
 export const googleLogin = formData => API.put('/google', formData)
+export const googleSignup = formData => API.put('/googleSignup', formData)
 
 export const updateUser = (id, formData) => API.put(`user/${id}`, formData);
 

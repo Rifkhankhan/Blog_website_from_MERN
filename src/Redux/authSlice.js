@@ -114,8 +114,14 @@ const authSlice = createSlice({
             localStorage.clear()
             localStorage.setItem('token',JSON.stringify(action.payload.token))
             state.isAuthenticated = true
+        },
+        googleSignup(state,action){
+            console.log(action.payload.result);
+            state.authData = action.payload.result
+            localStorage.clear()
+            localStorage.setItem('token',JSON.stringify(action.payload.token))
+            state.isAuthenticated = true
         }
-    
     }
 })
 
