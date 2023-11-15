@@ -128,21 +128,30 @@
 
 .form_container .logos{
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     justify-content: center;
     width: 100%;
-    align-items:center;
-    height: 80px;
+    margin: auto;
+    /* align-items:center; */
+    /* height: 80px; */
 }
 
-.form_container .logos img{
-    width: 35px;
-    height: 35px;
-    margin-inline: 0.5rem;
-    transition: all 0.3s ease-in-out;
+.form_container .logos{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    /* align-items:center; */
+    /* height: 80px; */
+}
+.form_container .logos .S9gUrf-YoZ4jf {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.form_container .logos .S9gUrf-YoZ4jf div{
+    display: none !important;
+    width: 0% !important;
 }
 
-.form_container .logos img:hover{
-  cursor: pointer;
-  transform: scale(1.2);
-}
+

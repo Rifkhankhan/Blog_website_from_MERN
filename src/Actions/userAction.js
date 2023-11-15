@@ -71,9 +71,14 @@ export const autoLogin = (formData) => async(dispatch) => {
 export const forgotPassword = (formData) => async(dispatch) => {
 
     try {
-        await UserApi.forgotPassword(formData);   
-       
+        const {data} = await UserApi.forgotPassword(formData);   
         dispatch(authActions.changeLoading())
+       
+        if(data.success) {
+            console.log(data);
+            swal("Email sent!", "Please check your email!", "error")
+
+        }
 
     } catch(error) {
         dispatch(authActions.changeLoading())
@@ -106,6 +111,28 @@ export const resetPassword = (formData) => async(dispatch) => {
             swal("Invalid Token!", "try again!", "error")
         } else if (error.response.status === 500) {
             swal("failed to reset", "Check the email address! And provide working email address!", "warning")
+        }
+
+        console.log(error);
+    }
+}
+
+export const googleLogin = (formData) => async(dispatch) => {
+
+    try {
+        const {data} = await UserApi.googleLogin(formData); 
+        // console.log(data);
+        dispatch(authActions.googleLogin(data))
+        dispatch(authActions.changeLoading())
+
+
+    } catch(error) {
+        dispatch(authActions.changeLoading())
+
+        if (error.response.status === 400) {
+            swal("Invalid Token!", "try again!", "error")
+        } else if (error.response.status === 500) {
+            swal("failed to google login", "please register!", "warning")
         }
 
         console.log(error);

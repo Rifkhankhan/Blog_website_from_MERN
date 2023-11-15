@@ -7,7 +7,11 @@ import linkedin from './../../images/linkedin.png'
 import fb from './../../images/facebook.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { authActions } from '../../Redux/authSlice'
-import { logIn, signUp,forgotPassword } from '../../Actions/userAction'
+import Google from '../../google'
+
+import { logIn, signUp, forgotPassword, googleLogin } from '../../Actions/userAction'
+import { GoogleOAuthProvider } from '@react-oauth/google'
+
 function Login() {
 	const [login, setLogin] = useState(true)
 	const isLoading = useSelector(state => state.auth.isLoading)
@@ -16,16 +20,19 @@ function Login() {
 	const navigate = useNavigate()
 	const [data, setData] = useState({ name: '', email: '', password: '' })
 	const [forgot, setForgot] = useState(false)
-	const [email,setEmail] = useState('')
-
-	useEffect(() => {
-		
-	},[isLoading])
+	const [email, setEmail] = useState('')
+	const [credential,setCredantial] = useState()
+	const [userData,setUserData] = useState()
+	useEffect(() => {}, [isLoading])
 	const btnHandler = e => {
 		setForgot(false)
 
 		setLogin(current => !current)
 	}
+
+
+	
+	
 
 	const [validation, setValidation] = useState({
 		name: '',
@@ -44,10 +51,11 @@ function Login() {
 	const handleSubmit = e => {
 		// page will not redirect default
 		e.preventDefault()
-		if(forgot){
-			dispatch(forgotPassword({email:email}))
-		}
-		else{
+		if (forgot) {
+			dispatch(authActions.changeLoading())
+
+			dispatch(forgotPassword({ email: email }))
+		} else {
 			dispatch(authActions.changeLoading())
 
 			if (login) {
@@ -56,7 +64,6 @@ function Login() {
 				dispatch(signUp(data))
 			}
 		}
-		
 	}
 	const checkValidation = () => {
 		if (
@@ -78,9 +85,33 @@ function Login() {
 		setForgot(true)
 	}
 
-	const emailhandleChange = (e) => {
+	const emailhandleChange = e => {
 		setEmail(e.target.value)
 	}
+
+	// decode token
+
+	const decodeToken = (token) => {
+		try{
+			const decoded = atob(token.split('.')[1])
+			setUserData(JSON.parse(decoded))
+			return JSON.parse(decoded)
+		}	
+		catch(err) {
+			console.log(err);
+		}
+}	
+	const responseHandler = (e) => {
+		setCredantial(e)
+		if(e.credential) {
+			const decodedToken = decodeToken(e.credential)
+			setUserData(decodedToken)
+			dispatch(googleLogin(decodedToken))
+		}
+	}
+
+
+	
 	return (
 		<div className={styles.container}>
 			<section className={styles.title}>
@@ -102,22 +133,26 @@ function Login() {
 							required
 						/>
 					)}
-					{!forgot && <input
-						type="email"
-						name="email"
-						defaultValue={data.email}
-						onChange={handleChange}
-						placeholder="Enter Email"
-						required
-					/>}
-					{forgot && <input
-						type="email"
-						name="email"
-						defaultValue={email}
-						onChange={emailhandleChange}
-						placeholder="Enter Email"
-						required
-					/>}
+					{!forgot && (
+						<input
+							type="email"
+							name="email"
+							defaultValue={data.email}
+							onChange={handleChange}
+							placeholder="Enter Email"
+							required
+						/>
+					)}
+					{forgot && (
+						<input
+							type="email"
+							name="email"
+							defaultValue={email}
+							onChange={emailhandleChange}
+							placeholder="Enter Email"
+							required
+						/>
+					)}
 					{!forgot && (
 						<input
 							type="password"
@@ -129,7 +164,8 @@ function Login() {
 						/>
 					)}
 
-					{!isLoading && !forgot &&
+					{!isLoading &&
+						!forgot &&
 						(login ? (
 							<button
 								disabled={
@@ -140,15 +176,9 @@ function Login() {
 						) : (
 							<button disabled={!validation}>REGISTER</button>
 						))}
-						{!isLoading && forgot &&
-						
-							<button
-								disabled={
-									!(email.includes('@') )
-								}>
-								Send Email
-							</button>
-						}
+					{!isLoading && forgot && (
+						<button disabled={!email.includes('@')}>Send Email</button>
+					)}
 					{isLoading && (
 						<button
 							style={{ background: 'green', color: 'white' }}
@@ -166,9 +196,15 @@ function Login() {
 						)}
 					</div>
 					<div className={styles.logos}>
-						<img src={google} alt="" />
-						<img src={fb} alt="" />
-						<img src={linkedin} alt="" />
+						{/* <img src={google} alt="" onClick={googleLogin} /> */}
+						<GoogleOAuthProvider clientId="302827218911-03vd01vqg3l19b48ge2uus3sh8r792pv.apps.googleusercontent.com">
+							<div style={{display:'flex !important',flexDirection:'column !important',marginTop:'-1.5rem'}}>
+								<Google  setCredantial={setCredantial} responseHandler={responseHandler}/>
+							</div>
+						</GoogleOAuthProvider>
+					
+						{/* <img src={fb} alt="" />
+						<img src={linkedin} alt="" /> */}
 					</div>
 				</form>
 			</section>

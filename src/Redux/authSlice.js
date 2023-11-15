@@ -9,13 +9,15 @@ const initialAuthState = {
     isAuthenticated:false,
     authData:[],
     isLoading:false,
-    gotoLoginPage:false
+    gotoLoginPage:false,
+    googleLogin:false,
 }
 const authSlice = createSlice({
     name:'auth',
     initialState:initialAuthState,
     reducers:{
         login(state,action){
+            // console.log(action.payload.result[0]);
             state.authData = action.payload.user
             localStorage.clear()
             localStorage.setItem('token',JSON.stringify(action.payload.token))
@@ -106,6 +108,12 @@ const authSlice = createSlice({
             if(action.payload.success){
                 state.gotoLoginPage = true
             }
+        },
+        googleLogin(state,action){
+            state.authData = action.payload.result[0]
+            localStorage.clear()
+            localStorage.setItem('token',JSON.stringify(action.payload.token))
+            state.isAuthenticated = true
         }
     
     }

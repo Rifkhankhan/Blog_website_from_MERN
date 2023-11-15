@@ -50,17 +50,13 @@ const Routers = () => {
 		 <Route path="/news" element={<News />} />
 		 <Route path="/reset/:token" element={<ResetPage />} />
 		 <Route path="/blogs/:id" element={<BlogDetails />} />
-		{/* {isAuthenticated && <Route path="/profile" element={<Profile />} >
-		 	 <Route index element={<Dashboard /> } />
-		 	 <Route path='blogs' element={<Blogs /> } />
-			 <Route path='create-blog' element={<CreateBlog /> } />
-		 </Route>} */}
-		<Route path="/profile" element={<Profile />} >
+		{isAuthenticated && <Route path="/profile" element={<Profile />} >
 		 	 <Route index element={<Dashboard /> } />
 		 	 <Route path='blogs' element={<Blogs /> } />
 		 	 <Route path='personal' element={<Personal /> } />
 			 <Route path='create-blog' element={<CreateBlog /> } />
-		 </Route>
+		 </Route>}
+	
 		 <Route path="*" element={<Home />} />
 
 		 	{/* {isAuthenticated && (

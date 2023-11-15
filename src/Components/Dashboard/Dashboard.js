@@ -23,7 +23,7 @@ const Dashboard = () => {
 
 
 	//get my blogs   
-	const myBlogs = blogs.filter(blog => blog.user.id === user._id)
+	const myBlogs = blogs.filter(blog => blog.user.id === user?._id)
 
 	//get the length of all comments
 	let commentsLength = myBlogs?.reduce(function(accumulator,current){
@@ -31,10 +31,10 @@ const Dashboard = () => {
 	},0)
 
 	//get blogs i liked
-	 const myLikedBlogs = blogs.filter(blog => blog.likes.includes(user._id))
+	 const myLikedBlogs = blogs.filter(blog => blog.likes.includes(user?._id))
 
 	//  get blogs i commented
-	const mycommentedBlogs = blogs.filter(blog => blog.comments.includes(blog.comments.some(comment => comment.user.id === user._id)))
+	const mycommentedBlogs = blogs.filter(blog => blog.comments.includes(blog.comments.some(comment => comment.user.id === user?._id)))
 	// console.log(mycommentedBlogs);
 
 
