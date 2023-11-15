@@ -71,10 +71,8 @@ export const autoLogin = (formData) => async(dispatch) => {
 export const forgotPassword = (formData) => async(dispatch) => {
 
     try {
-        const {data} = await UserApi.forgotPassword(formData);
-        swal("Success!", "Email Sent!")
-
-        // dispatch(authActions.autoLogin(data))
+        await UserApi.forgotPassword(formData);   
+       
         dispatch(authActions.changeLoading())
 
     } catch(error) {
@@ -84,6 +82,30 @@ export const forgotPassword = (formData) => async(dispatch) => {
             swal("User with this email not exists!", "Please register!", "error")
         } else if (error.response.status === 500) {
             swal("failed to send reset email", "Check the email address! And provide working email address!", "warning")
+        }
+
+        console.log(error);
+    }
+}
+
+
+export const resetPassword = (formData) => async(dispatch) => {
+
+    try {
+        const {data} = await UserApi.resetPassword(formData); 
+        if(data?.success){
+            swal("Successfully reset password!")
+            dispatch(authActions.gotoLoginPage(data))
+        }  
+        dispatch(authActions.changeLoading())
+
+    } catch(error) {
+        dispatch(authActions.changeLoading())
+
+        if (error.response.status === 400) {
+            swal("Invalid Token!", "try again!", "error")
+        } else if (error.response.status === 500) {
+            swal("failed to reset", "Check the email address! And provide working email address!", "warning")
         }
 
         console.log(error);

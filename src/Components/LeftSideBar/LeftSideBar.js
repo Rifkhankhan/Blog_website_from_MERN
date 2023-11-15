@@ -98,6 +98,7 @@ const LeftSideBar = (props) => {
                     <li><Link to='/profile/create-blog'>Create Blog</Link></li>
                 </ul>
             </li>
+            <li><Link to='/profile/personal' className="parent-btn">Personal</Link></li>
             <li><Link to='/' className="parent-btn" onClick={logoutHandler}>Logout</Link></li>
            
             {/* <li>

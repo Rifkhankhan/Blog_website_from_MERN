@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import styles from './ResetPage.module.css'
 import logo from './../../images/profile.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import google from '../../images/google-plus.png'
 import linkedin from './../../images/linkedin.png'
 import fb from './../../images/facebook.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { authActions } from '../../Redux/authSlice'
-import { logIn, signUp } from '../../Actions/userAction'
+import { logIn, signUp,resetPassword } from '../../Actions/userAction'
+
 function ResetPage() {
 	const [login, setLogin] = useState(true)
 	const isLoading = useSelector(state => state.auth.isLoading)
-	const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+	const gotoLoginPage = useSelector(state => state.auth.gotoLoginPage)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [data, setData] = useState({ rePassword: '', password: '' })
-
+	const params = useParams()
+	const token = params.token;
 	const [validation, setValidation] = useState({
 		rePassword: '',
 		password: ''
@@ -25,8 +27,8 @@ function ResetPage() {
 		setData({ ...data, [e.target.name]: e.target.value })
 	}
 
-	if (isAuthenticated) {
-		navigate('/profile')
+	if (gotoLoginPage) {
+		navigate('/login')
 	}
 
 	const handleSubmit = e => {
@@ -34,11 +36,7 @@ function ResetPage() {
 		e.preventDefault()
 		dispatch(authActions.changeLoading())
 
-		if (login) {
-			dispatch(logIn(data))
-		} else {
-			dispatch(signUp(data))
-		}
+		dispatch(resetPassword({token:token,password:data.password}))
 	}
 	const checkValidation = () => {
 		if (

@@ -9,6 +9,7 @@ export const logIn = formData => API.post('/login', formData)
 export const signUp = formData => API.post('/signup', formData)
 export const autoLogin = formData => API.post('/autologin', formData)
 export const forgotPassword = formData => API.post('/forgotPassword', formData)
+export const resetPassword = formData => API.put('/resetPassword', formData)
 
 export const googleLogin = formData =>
 	API.post('/user/user_google_login', formData)

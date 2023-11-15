@@ -14,6 +14,7 @@ import Technology from '../Pages/Technology/Technology'
 import Animals from '../Pages/Animals/Animals'
 import News from '../Pages/News/News'
 import ResetPage from '../Pages/ResetPage/ResetPage'
+import Personal from '../Components/Personal/Personal'
 
 const Routers = () => {
 	const dispatch = useDispatch()
@@ -47,13 +48,19 @@ const Routers = () => {
 		 <Route path="/technology" element={<Technology />} />
 		 <Route path="/animals" element={<Animals />} />
 		 <Route path="/news" element={<News />} />
-		 <Route path="/reset" element={<ResetPage />} />
+		 <Route path="/reset/:token" element={<ResetPage />} />
 		 <Route path="/blogs/:id" element={<BlogDetails />} />
-		{isAuthenticated && <Route path="/profile" element={<Profile />} >
+		{/* {isAuthenticated && <Route path="/profile" element={<Profile />} >
 		 	 <Route index element={<Dashboard /> } />
 		 	 <Route path='blogs' element={<Blogs /> } />
 			 <Route path='create-blog' element={<CreateBlog /> } />
-		 </Route>}
+		 </Route>} */}
+		<Route path="/profile" element={<Profile />} >
+		 	 <Route index element={<Dashboard /> } />
+		 	 <Route path='blogs' element={<Blogs /> } />
+		 	 <Route path='personal' element={<Personal /> } />
+			 <Route path='create-blog' element={<CreateBlog /> } />
+		 </Route>
 		 <Route path="*" element={<Home />} />
 
 		 	{/* {isAuthenticated && (

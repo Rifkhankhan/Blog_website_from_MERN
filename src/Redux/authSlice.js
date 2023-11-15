@@ -8,7 +8,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialAuthState = {
     isAuthenticated:false,
     authData:[],
-    isLoading:false
+    isLoading:false,
+    gotoLoginPage:false
 }
 const authSlice = createSlice({
     name:'auth',
@@ -100,6 +101,11 @@ const authSlice = createSlice({
             state.card = action.payload[0].card
             state.orders = action.payload[0].orders
             state.shipped = action.payload[0].shipped
+        },
+        gotoLoginPage(state,action){
+            if(action.payload.success){
+                state.gotoLoginPage = true
+            }
         }
     
     }

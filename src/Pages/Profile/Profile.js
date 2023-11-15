@@ -7,11 +7,11 @@ function Profile() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   const navigate = useNavigate()
 
-  useEffect(() => {
-		if(!isAuthenticated){
-			navigate('/')
-		  }
-	},[])
+  // useEffect(() => {
+	// 	if(!isAuthenticated){
+	// 		navigate('/')
+	// 	  }
+	// },[])
 
   const showSidebar = (condition) => {
     const profile_container = document.getElementById('profile_container')
